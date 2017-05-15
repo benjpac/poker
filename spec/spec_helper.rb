@@ -10,13 +10,3 @@ require('capybara/rspec')
 Capybara.app = Sinatra::Application
 set(:show_exceptions, false)
 require './app'
-
-
-RSpec.configure do |config|
-  config.after(:each) do
-    Card.all().each() do |recipe|
-      recipe.destroy()
-    end
-
-  end
-end

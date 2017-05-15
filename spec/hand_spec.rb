@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe Hand do
+  it { should have_many(:cards) }
+  
   describe "straight" do
     it "tests if five cards are a straight" do
       card1 = Card.create(suit: "s", value: 7)
@@ -106,4 +108,5 @@ describe Hand do
       expect(Hand.four_of_a_kind(five)).to eq(0)
     end
   end
+
 end

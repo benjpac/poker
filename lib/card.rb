@@ -1,26 +1,43 @@
 class Card < ActiveRecord::Base
-  belongs_to :hands
-  belongs_to :flops
+  belongs_to :hand
+  belongs_to :flop
 
-  def self.create_deck
-    deck = []
-    suits = ["s", "d", "c", "h"]
-    suits.each do |suit|
-      2..14.each do |value|
-        card = Card.create(suit: suit, value: value)
-        deck.push(card)
+  @@deck = []
+
+  class << self
+
+    def shuffled_deck
+      suits = ['s', 'd', 'c', 'h']
+      suits.each do |suit|
+        (2..14).each do |value|
+          card = Card.new(suit: suit, value: value)
+          @@deck.push(card)
+        end
       end
+      return @@deck.shuffle
     end
-    return deck
+
+    def deal_card
+      return @@deck.pop
+    end
+
+    def deal_to_players(num_players)
+      player_hands = Array.new(num_players) {[]}
+      for i in 0..num_players-1
+        player_hands[i].push(Card.deal_card)
+        player_hands[i].push(Card.deal_card)
+      end
+      return player_hands
+    end
+
+    def flop
+      flop = []
+      for i in 1..3
+        flop.push(Card.deal_card)
+      end
+      return flop
+    end
+
   end
-
-  #pick a random card(deck)
-
-  #deal cards
-
-  #add to flop
-
-  #not_yet_dealt
-
 
 end

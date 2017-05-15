@@ -1,0 +1,18 @@
+body {
+    background-image: url("/img/table.jpg ");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#cards img{
+  width: auto;
+  height: 110px;
+  margin: 0 auto;
+  margin-top: 450px;
+
+
+}
+
+#cards .deck{
+  width: auto;
+  height: 140px;
+}
