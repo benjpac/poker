@@ -1,0 +1,7 @@
+development:
+  adapter: postgresql
+  database: poker_development
+
+test:
+  adapter: postgresql
+  database: poker_test
