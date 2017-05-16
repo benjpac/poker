@@ -17,3 +17,8 @@ end
 get '/deal' do
   erb(:deal)
 end
+
+get '/2_player_deal' do
+  
+  erb(:two_player_deal)
+end
