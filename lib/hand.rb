@@ -2,15 +2,15 @@ class Hand < ActiveRecord::Base
   belongs_to :player
   has_many :cards
 
-  def add_flop_and_sort
-    seven_cards = self.cards + flop.cards
+  def add_round_and_sort
+    seven_cards = self.cards + round.cards
     small_to_large = seven_cards.sort_by {|card| card.value}
     return sorted = small_to_large.reverse
   end
 
   def get_five
     combinations = []
-    seven = self.add_flop_and_sort
+    seven = self.add_round_and_sort
     seven.each do |card1|
       six = seven - [card1]
       six.each do |card2|
@@ -22,13 +22,17 @@ class Hand < ActiveRecord::Base
   end
 
   def rank_hand
-    combinations = self.get_five()
+    combinations = self.get_five
+    seven = self.add_round_and_sort
+
     flush = 0
     flush_hand = []
     straight = 0
     straight_hand = []
     four_of_a_kind = 0
     four_of_a_kind_hand = []
+    full_house = 0
+    full_house_hand = []
     three_of_a_kind = 0
     three_of_a_kind_hand = []
     pair = 0
@@ -66,11 +70,35 @@ class Hand < ActiveRecord::Base
     end
 
     if flush > 0 && straight >> 0
-      score = 900 + flush
+      score = 90000 + flush
     elsif four_of_a_kind > 0
-      score = 800 + four_of_a_kind
+      score = 80000 + four_of_a_kind
     elsif three_of_a_kind > 0
-      #test for full house
+      four = seven.delete_if {|card| card.value == three_of_a_kind}
+      if four.pair > 0
+        score = 70000 + three_of_a_kind
+      else
+        if flush > 0
+          score = 60000 + flush
+        elsif straight > 0
+          score = 50000 + straight
+        else
+          score = 40000 + three_of_a_kind
+        end
+      end
+    elsif flush > 0
+      score = 60000 + flush
+    elsif straight > 0
+      score = 50000 + straight
+    elsif pair > 0
+      five = seven.delete_if {|card| card.value == pair}
+      if five.pair > 0
+        score = 30000 + 100*pair + five.pair
+      else
+        score = 20000 + 100*pair + five[0]
+      end
+    else
+      score = seven[0]
     end
   end
 
@@ -121,7 +149,8 @@ class Hand < ActiveRecord::Base
 
     def pair(five)
       five.each do |card1|
-        five.each do |card2|
+        four = five - [card]
+        four.each do |card2|
           if card1.value == card2.value
             return card1.value
           end
@@ -129,6 +158,5 @@ class Hand < ActiveRecord::Base
       end
       return 0
     end
-
   end
 end
