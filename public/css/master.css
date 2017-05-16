@@ -1,26 +1,99 @@
-body {
-    background-image: url("/img/table.jpg ");
+
+/*play now button centering*/
+.front img{
+position: fixed;
+top: 60%;
+left: 47%;
+margin: -70px 0 0 -170px;
+}
+
+/*background image for the index page*/
+body.front{
+    background-image: url("/img/frontpage1.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: top;
 }
+/*background image for the table*/
+body.deal{
+    background-image: url("/img/table.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top;
+}
+
+
+
+
+/*background image for the index page*/
+body.2_player {
+    background-image: url("/img/frontpage1.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top;
+}
+/*slow transition-- hover over the play now button*/
+.2_player:hover{
+  -webkit-transition: all 1000ms ease;
+  -moz-transition: all 1000ms ease;
+  -ms-transition: all 1000ms ease;
+  -o-transition: all 1000ms ease;
+  transition: all 1200ms ease;
+  background-image: url("/img/2player.jpg");
+}
+.2_player img{
+position: fixed;
+top: 60%;
+left: 47%;
+margin: -70px 0 0 -170px;
+}
+
+/*slow transition-- hover over the play now button*/
+.front:hover{
+  -webkit-transition: all 1000ms ease;
+  -moz-transition: all 1000ms ease;
+  -ms-transition: all 1000ms ease;
+  -o-transition: all 1000ms ease;
+  transition: all 1200ms ease;
+  background-image: url("/img/table.jpg");
+}
+
+
+
+/*card transitions on the table*/
+@keyframes example {
+    0%   {left:600px; top:550px;}
+    25%  {left:600px; top:550px;}
+}
+
 #cards .card1{
   position: fixed;
      top: 50%;
      left: 50%;
      width: auto;
      height: 110px;
-     margin-top: 100px; /* Half the height */
-     margin-left: 0px; /* Half the width */
+     margin-top: 100px;
+     margin-left: 0px;
+     -webkit-animation-name: example;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-delay: -1s;
+    animation-name: example;
+    animation-duration: 3s;
 }
+
 #cards .card2{
   position: fixed;
      top: 50%;
      left: 45%;
      width: auto;
      height: 110px;
-     margin-top: 100px; /* Half the height */
-     margin-left: 0px; /* Half the width */
+     margin-top: 100px;
+     margin-left: 0px;
+     -webkit-animation-name: example;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-delay: -1s;
+    animation-name: example;
+    animation-duration: 3s;
 }
 #cards .card3{
   position: fixed;
@@ -28,10 +101,14 @@ body {
      left: 40%;
      width: auto;
      height: 110px;
-     margin-top: 100px; /* Half the height */
-     margin-left: 0px; /* Half the width */
+     margin-top: 100px;
+     margin-left: 0px;
+     -webkit-animation-name: example;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-delay: -1s;
+    animation-name: example;
+    animation-duration: 3s;
 }
-
 
 #cards .deck{
   position: fixed;
@@ -39,6 +116,8 @@ body {
      left: 33%;
      width: auto;
      height: 140px;
-     margin-top: 100px; /* Half the height */
-     margin-left: 0px; /* Half the width */
+     margin-top: 100px;
+     margin-left: 0px;
 }
+
+/*end card transitions on table*/
