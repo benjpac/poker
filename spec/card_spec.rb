@@ -30,7 +30,6 @@ describe Card do
   # it 'simulate deal cards to 3 players with flop' do
   #   @@deck = Card.shuffled_deck
   #   flop = flop.cards
-  #   pair
   #   binding.pry
   # end
 end

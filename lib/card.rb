@@ -10,7 +10,7 @@ class Card < ActiveRecord::Base
       suits = ['s', 'd', 'c', 'h']
       suits.each do |suit|
         (2..14).each do |value|
-          card = Card.new(suit: suit, value: value)
+          card = Card.create(suit: suit, value: value)
           @@deck.push(card)
         end
       end
