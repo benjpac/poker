@@ -15,8 +15,8 @@ body.front{
     background-position: top;
 }
 /*background image for the table*/
-body.deal{
-    background-image: url("/img/table.jpg");
+body.two{
+    background-image: url("/img/twoplayer.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: top;
@@ -41,7 +41,7 @@ body.two_player{
   -ms-transition: all 1500ms ease;
   -o-transition: all 1500ms ease;
   transition: all 1500ms ease;
-  background-image: url("/img/2player.jpg");
+  background-image: url("/img/twoplayer.jpg");
 }
 .two_player img{
 position: fixed;
@@ -52,9 +52,14 @@ width: auto;
 }
 
 
+div.buttons{
+  position: fixed;
+  top: 20%;
+  padding-left: 500px;
+  height: 100px;
+  width: auto;
 
-
-
+}
 
 
 
