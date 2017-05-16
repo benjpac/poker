@@ -7,8 +7,7 @@ left: 47%;
 margin: -70px 0 0 -170px;
 }
 
-
-/*background image for the first page*/
+/*background image for the index page*/
 body.front{
     background-image: url("/img/frontpage1.jpg");
     background-repeat: no-repeat;
@@ -23,6 +22,32 @@ body.deal{
     background-position: top;
 }
 
+
+
+
+/*background image for the index page*/
+body.2_player {
+    background-image: url("/img/frontpage1.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top;
+}
+/*slow transition-- hover over the play now button*/
+.2_player:hover{
+  -webkit-transition: all 1000ms ease;
+  -moz-transition: all 1000ms ease;
+  -ms-transition: all 1000ms ease;
+  -o-transition: all 1000ms ease;
+  transition: all 1200ms ease;
+  background-image: url("/img/2player.jpg");
+}
+.2_player img{
+position: fixed;
+top: 60%;
+left: 47%;
+margin: -70px 0 0 -170px;
+}
+
 /*slow transition-- hover over the play now button*/
 .front:hover{
   -webkit-transition: all 1000ms ease;
@@ -32,6 +57,8 @@ body.deal{
   transition: all 1200ms ease;
   background-image: url("/img/table.jpg");
 }
+
+
 
 /*card transitions on the table*/
 @keyframes example {

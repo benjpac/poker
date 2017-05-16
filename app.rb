@@ -9,6 +9,11 @@ get '/' do
   erb(:index)
 end
 
+get '/how_many_players'do
+
+  erb(:how_many_players)
+end
+
 get '/deal' do
   erb(:deal)
 end
