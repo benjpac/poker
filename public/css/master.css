@@ -2,17 +2,43 @@ body {
     background-image: url("/img/table.jpg ");
     background-repeat: no-repeat;
     background-size: cover;
+    background-position: top;
 }
-#cards img{
-  width: auto;
-  height: 110px;
-  margin: 0 auto;
-  margin-top: 450px;
-
-
+#cards .card1{
+  position: fixed;
+     top: 50%;
+     left: 50%;
+     width: auto;
+     height: 110px;
+     margin-top: 100px; /* Half the height */
+     margin-left: 0px; /* Half the width */
 }
+#cards .card2{
+  position: fixed;
+     top: 50%;
+     left: 45%;
+     width: auto;
+     height: 110px;
+     margin-top: 100px; /* Half the height */
+     margin-left: 0px; /* Half the width */
+}
+#cards .card3{
+  position: fixed;
+     top: 50%;
+     left: 40%;
+     width: auto;
+     height: 110px;
+     margin-top: 100px; /* Half the height */
+     margin-left: 0px; /* Half the width */
+}
+
 
 #cards .deck{
-  width: auto;
-  height: 140px;
+  position: fixed;
+     top: 49%;
+     left: 33%;
+     width: auto;
+     height: 140px;
+     margin-top: 100px; /* Half the height */
+     margin-left: 0px; /* Half the width */
 }
