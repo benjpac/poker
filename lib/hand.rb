@@ -51,41 +51,41 @@ class Hand < ActiveRecord::Base
 
     score = 0
 
-    hand_types = ["flush", "straight", "four_of_a_kind", "three_of_a_kind", "pair"]
-    hand_types.each do |hand_type|
-      hand_type = find_highest_of_hand_type (hand_type, combinations)
+    # hand_types = ["flush", "straight", "four_of_a_kind", "three_of_a_kind", "pair"]
+    # hand_types.each do |hand_type|
+    #   hand_type = find_highest_of_hand_type (hand_type, combinations)
+    # end
+
+
+    combinations.each do |five|
+      if Hand.flush(five) > flush
+        flush = Hand.flush(five)
+      end
     end
 
+    combinations.each do |five|
+      if Hand.straight(five) > straight
+        straight = Hand.straight(five)
+      end
+    end
 
-    # combinations.each do |five|
-    #   if Hand.flush(five) > flush
-    #     flush = Hand.flush(five)
-    #   end
-    # end
-    #
-    # combinations.each do |five|
-    #   if Hand.straight(five) > straight
-    #     straight = Hand.straight(five)
-    #   end
-    # end
-    #
-    # combinations.each do |five|
-    #   if Hand.four_of_a_kind(five) > four_of_a_kind
-    #     four_of_a_kind = Hand.four_of_a_kind(five)
-    #   end
-    # end
-    #
-    # combinations.each do |five|
-    #   if Hand.three_of_a_kind(five) > three_of_a_kind
-    #     three_of_a_kind = Hand.three_of_a_kind(five)
-    #   end
-    # end
-    #
-    # combinations.each do |five|
-    #   if Hand.pair(five) > pair
-    #     pair = Hand.pair(five)
-    #   end
-    # end
+    combinations.each do |five|
+      if Hand.four_of_a_kind(five) > four_of_a_kind
+        four_of_a_kind = Hand.four_of_a_kind(five)
+      end
+    end
+
+    combinations.each do |five|
+      if Hand.three_of_a_kind(five) > three_of_a_kind
+        three_of_a_kind = Hand.three_of_a_kind(five)
+      end
+    end
+
+    combinations.each do |five|
+      if Hand.pair(five) > pair
+        pair = Hand.pair(five)
+      end
+    end
 
     if flush > 0 && straight > 0
       score = 90000 + flush
@@ -120,15 +120,15 @@ class Hand < ActiveRecord::Base
     end
   end
 
-  def find_highest_of_hand_type(hand_type, combinations)
-    score = 0
-    combinations.each do |five|
-      if Hand.send (:hand_type, five) > score
-        score = Hand.send (:hand_type, five)
-      end
-    end
-    return score
-  end
+  # def find_highest_of_hand_type(hand_type, combinations)
+  #   score = 0
+  #   combinations.each do |five|
+  #     if Hand.send (:hand_type, five) > score
+  #       score = Hand.send (:hand_type, five)
+  #     end
+  #   end
+  #   return score
+  # end
 
   class << self
 

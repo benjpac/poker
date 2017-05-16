@@ -6,6 +6,7 @@ Dir[File.dirname(__FILE__) + '/lib/*.rb'].each { |file| require file }
 
 
 get '/' do
+
   erb(:index)
 end
 
@@ -19,6 +20,11 @@ get '/deal' do
 end
 
 get '/2_player_deal' do
-  
+  @deck = Deck.create
+  @round = @deck.create_round
+  @card_urls = []
+  @round.cards.each do |card|
+    @card_urls.push(card.image_string)
+  end
   erb(:two_player_deal)
 end
