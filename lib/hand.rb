@@ -1,6 +1,8 @@
 class Hand < ActiveRecord::Base
-  belongs_to :player
   has_many :cards
+  belongs_to :player
+  belongs_to :deck
+  belongs_to :round
 
   def add_flop_and_sort
     seven_cards = self.cards + flop.cards
