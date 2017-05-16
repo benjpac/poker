@@ -1,5 +1,6 @@
 <body class="two">
   <div class="buttons">
+  <a href="#"><img src="img/buttons/check.png"  /></a>
   <a href="#"><img src="img/buttons/call.png"  /></a>
   <a href="#"><img src="img/buttons/fold.png"  /></a>
   <a href="#"><img src="img/buttons/raise.png"  /></a>
@@ -7,8 +8,8 @@
 
   <div id="cards">
     <a href="#"><img class="deck" src="img/deck.png" alt="deck" /></a>
-    <img src="img/Cards/c_2.png" class="card1"  />
-    <img src="img/Cards/c_2.png" class="card2" />
-    <img src="img/Cards/c_2.png" class="card3" />
+    <% @card_urls.each do |url| %>
+      <img src="img/Cards/<%= url %>.png">
+    <% end %>
   </div>
 </body>

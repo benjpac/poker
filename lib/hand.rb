@@ -49,11 +49,11 @@ class Hand < ActiveRecord::Base
   #   pair_hand = []
   #
   #   score = 0
-  #
-  #   hand_types = ["flush", "straight", "four_of_a_kind", "three_of_a_kind", "pair"]
-  #   hand_types.each do |hand_type|
-  #     hand_type = find_highest_of_hand_type (hand_type, combinations)
-  #   end
+
+    # hand_types = ["flush", "straight", "four_of_a_kind", "three_of_a_kind", "pair"]
+    # hand_types.each do |hand_type|
+    #   hand_type = find_highest_of_hand_type (hand_type, combinations)
+    # end
 
 
     # combinations.each do |five|
@@ -119,6 +119,7 @@ class Hand < ActiveRecord::Base
   #   end
   # end
   #
+
   # def find_highest_of_hand_type(hand_type, combinations)
   #   score = 0
   #   combinations.each do |five|
@@ -128,6 +129,7 @@ class Hand < ActiveRecord::Base
   #   end
   #   return score
   # end
+
   #
   # class << self
   #

@@ -5,12 +5,14 @@ describe Hand do
   it { should belong_to(:player) }
   it { should belong_to(:deck) }
 
-  it 'it creates a deck, a flop, 2 player cards, a turn, a river, and returns them' do
-    deck = Deck.create
-    round = deck.create_round
-    hand1 = deck.hands.create
 
-  end
+  # it 'it creates a deck, a flop, 2 player cards, a turn, a river, and returns them' do
+  #   deck = Deck.create
+  #   round = deck.create_round
+  #   hand1 = deck.hands.create
+  #
+  # end
+  #
 
   # describe "rank_hand" do
   #   it "gives a rank of 90014 for a royal flush" do

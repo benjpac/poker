@@ -11,7 +11,6 @@ describe Round do
     hand1.create_two_cards
     deck.round.create_turn
     deck.round.create_river
-    # binding.pry
     # expect(deck.cards.where(round_id: round.id)).to all(include({"deck_id" => deck.id}))
   end
 end

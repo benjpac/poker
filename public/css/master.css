@@ -51,21 +51,17 @@ height: 100px;
 width: auto;
 }
 
-
 div.buttons{
   position: fixed;
   top: 20%;
-  padding-left: 500px;
+  padding-left: 450px;
   height: 100px;
   width: auto;
-
 }
 
 
 
-
-
-/*card transitions on the table*/
+/*card transitions begin on the table*/
 @keyframes example {
     0%   {left:600px; top:550px;}
     25%  {left:600px; top:550px;}
