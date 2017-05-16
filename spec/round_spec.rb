@@ -8,10 +8,10 @@ describe Round do
     deck = Deck.create
     round = deck.create_round
     hand1 = deck.hands.create
+    hand1.create_two_cards
     deck.round.create_turn
     deck.round.create_river
-    test1 = hand1.add_round_id(round)
-    binding.pry
+    # binding.pry
     # expect(deck.cards.where(round_id: round.id)).to all(include({"deck_id" => deck.id}))
   end
 end
