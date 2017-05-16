@@ -1,6 +1,17 @@
 class Hand < ActiveRecord::Base
-  belongs_to :player
   has_many :cards
+  belongs_to :player
+  belongs_to :deck
+  belongs_to :round
+  after_create(:create_two_cards)
+
+  def create_two_cards
+    deck = self.deck
+    for i in 1..2
+      random_card = deck.pull_random_card
+      random_card.update(hand_id: self.id)
+    end
+  end
 
   def add_round_and_sort
     seven_cards = self.cards + deck.round.cards
