@@ -1,7 +1,16 @@
 
+/*play now button centering*/
+.front img{
+position: fixed;
+top: 60%;
+left: 47%;
+margin: -70px 0 0 -170px;
+}
+
+
 /*background image for the first page*/
 body.front{
-    background-image: url("/img/frontpage.jpg");
+    background-image: url("/img/frontpage1.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: top;
@@ -16,11 +25,11 @@ body.deal{
 
 /*slow transition-- hover over the play now button*/
 .front:hover{
-  -webkit-transition: all 1500ms ease;
-  -moz-transition: all 1500ms ease;
-  -ms-transition: all 1500ms ease;
-  -o-transition: all 1500ms ease;
-  transition: all 1500ms ease;
+  -webkit-transition: all 1000ms ease;
+  -moz-transition: all 1000ms ease;
+  -ms-transition: all 1000ms ease;
+  -o-transition: all 1000ms ease;
+  transition: all 1200ms ease;
   background-image: url("/img/table.jpg");
 }
 
