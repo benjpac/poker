@@ -3,24 +3,25 @@ class Hand < ActiveRecord::Base
   belongs_to :round
   belongs_to :player
 
-  def win(round, blind)
-    inactive_player = Player.find(round.inactive_player_id)
-    inactive_player.hand.move_to_pot(round)
-
+  def win
+    self.move_to_pot
+    other_player = Player.find(self.round.other_player_id(self))
+    other_player.hand.move_to_pot
+    new_money_total = self.player.money + self.round.pot
+    self.player.update(money: new_money_total)
   end
 
-  def fold(round)
-    move_to_pot(round)
+  def fold
+    move_to_pot(self.round)
     self.destroy
   end
 
-  def move_to_pot(round)
-    round.update(pot: (round.pot + self.bet))
+  def move_to_pot
+    round.update(pot: (self.round.pot + self.bet))
     self.update(bet: 0)
   end
 
   def make_bet(amt)
-    binding.pry
     self.player.update(money: (self.player.money - amt))
     self.update(bet: (self.bet + amt))
   end
@@ -32,15 +33,15 @@ class Hand < ActiveRecord::Base
     end
   end
 
-  def add_round_and_sort(round)
-    seven_cards = self.cards + round.cards
+  def add_round_and_sort
+    seven_cards = self.cards + self.cards
     small_to_large = seven_cards.sort_by {|card| card.value}
     return small_to_large.reverse
   end
 
-  def combinations(round)
+  def combinations
     combinations = []
-    seven = self.add_round_and_sort(round)
+    seven = self.add_round_and_sort
     seven.each do |card1|
       six = seven - [card1]
       six.each do |card2|
@@ -52,9 +53,9 @@ class Hand < ActiveRecord::Base
     return combinations
   end
 
-  def rank_hand(round)
-    combinations = self.combinations(round)
-    seven = self.add_round_and_sort(round)
+  def rank_hand
+    combinations = self.combinations
+    seven = self.add_round_and_sort
 
     flush = 0
     straight = 0

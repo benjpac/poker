@@ -29,9 +29,6 @@ get '/2_player_deal' do
   erb :two_player_deal
 end
 
-
-
-
 get '/text' do
   erb :text
 end
@@ -46,14 +43,9 @@ end
 
 post '/text/players' do
   round = Round.create(pot: 0)
-  player1 = Player.create(name: params[:player1], money: 99)
-  player2 = Player.create(name: params[:player2], money: 98)
-  Card.create_deck
-  hand1 = Hand.create(bet: 1, player_id: player1.id, round_id: round.id)
-  hand1.create_hand
-  hand2 = Hand.create(bet: 2, player_id: player2.id, round_id: round.id)
-  hand2.create_hand
-  round.update(pot: 0, active_player_id: player1.id)
+  player1 = Player.create(name: params[:player1], money: 100)
+  player2 = Player.create(name: params[:player2], money: 100)
+  round.create_game(player1, player2, 1)
   redirect '/text/2_player/round/'.concat(round.id.to_s)
 end
 
@@ -65,11 +57,13 @@ get '/text/2_player/round/:round_id' do
   erb :text_game
 end
 
-patch '/text/fold/round/:round_id/' do
+patch '/text/fold/round/:round_id' do
   round = Round.find(params[:round_id])
   active_player = Player.find(round.active_player_id.to_i)
   inactive_player = Player.find(round.inactive_player_id.to_i)
-  new_round = inactive_player.hand.win(round)
+  inactive_player.hand.win
+  new_round = Round.create(pot: 0)
+  new_round.create_game(inactive_player, active_player, 1)
   redirect '/text/2_player/round/'.concat(new_round.id.to_s)
 
 
