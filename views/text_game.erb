@@ -1,29 +1,32 @@
 <div class="row">
   <div class="col-md-6">
-    <% player = Player.find(@round.active_player_id) %>
-    <h1>player.name</h1>
-    <% cards_in_hand = player.hands.first.cards %>
+    <% active_player = Player.find(@round.active_player_id) %>
+    <% inactive_player = Player.find(@round.inactive_player_id) %>
+    <% binding.pry %>
+    <h2>Pot: $<%= @round.pot + active_player.hand.bet + inactive_player.hand.bet%></h2>
+    <h1><%= active_player.name %></h1>
+    <% cards_in_hand = active_player.hand.cards %>
     <% if cards_in_hand != [] %>
       <% cards_in_hand.each do |card| %>
         <h1><%= card.image_string %></h1>
       <% end %>
     <% end %>
 
-    <form action="/text/fold" method="post">
+    <form action="/text/fold/round/<%= @round.id %>" method="post">
       <button type="submit">Fold</button>
     </form>
-    <form action="/text/call" method="post">
+    <form action="/text/call/round/<%= @round.id %>" method="post">
       <button type="submit">Call</button>
     </form>
-    <form action="/text/raise" method="post">
+    <form action="/text/raise/round/<%= @round.id %>" method="post">
       <div class="form-group">
         <label for="raise"></label>
         <input type="text" name="raise">
       </div>
       <button type="submit">Raise</button>
     </form>
-    <% binding.pry %>
-    <h3>Current bet: $<%= player.hands.first.bet %></h3>
-    <h3>Available funds: $<%= player.money %></h3>
+    <h3>Your opponent's bet: $<%= inactive_player.hand.bet %></h3></h3>
+    <h3>Your current bet: $<%= active_player.hand.bet %></h3>
+    <h3>Available funds: $<%= active_player.money %></h3>
   </div>
 </div>
