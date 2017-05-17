@@ -22,4 +22,10 @@ class Round < ActiveRecord::Base
   def change_active_player(player_id)
     round.update(active_player_id: player.id)
   end
+
+  def inactive_player_id
+    active_player_id
+    inactive_player = Player.all.where(round_id: self.id) - [Player.find(active_player_id)]
+    return inactive_player.first.id
+  end
 end

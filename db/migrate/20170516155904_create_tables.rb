@@ -3,6 +3,7 @@ class CreateTables < ActiveRecord::Migration[5.1]
     create_table :players do |t|
       t.column :name, :string
       t.column :money, :integer
+      t.column :round_id, :integer
     end
 
     create_table :hands do |t|

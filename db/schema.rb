@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20170516155904) do
   create_table "players", force: :cascade do |t|
     t.string "name"
     t.integer "money"
+    t.integer "round_id"
   end
 
   create_table "rounds", force: :cascade do |t|
