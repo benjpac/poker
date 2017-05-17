@@ -18,16 +18,11 @@ ActiveRecord::Schema.define(version: 20170516155904) do
   create_table "cards", force: :cascade do |t|
     t.integer "round_id"
     t.integer "hand_id"
-    t.integer "deck_id"
     t.string "suit"
     t.integer "value"
   end
 
-  create_table "decks", force: :cascade do |t|
-  end
-
   create_table "hands", force: :cascade do |t|
-    t.integer "deck_id"
     t.integer "player_id"
     t.integer "bet"
   end
@@ -38,7 +33,6 @@ ActiveRecord::Schema.define(version: 20170516155904) do
   end
 
   create_table "rounds", force: :cascade do |t|
-    t.integer "deck_id"
     t.integer "pot"
   end
 

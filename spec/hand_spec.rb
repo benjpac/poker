@@ -3,7 +3,6 @@ require 'spec_helper'
 describe Hand do
   it { should have_many(:cards) }
   it { should belong_to(:player) }
-  it { should belong_to(:deck) }
 
 
   # it 'it creates a deck, a flop, 2 player cards, a turn, a river, and returns them' do

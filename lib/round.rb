@@ -1,6 +1,6 @@
 class Round < ActiveRecord::Base
   has_many :cards
-  belongs_to :deck
+  has_many :hands, through: :cards
   after_create(:create_flop)
 
   def create_flop

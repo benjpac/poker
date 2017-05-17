@@ -1,8 +1,7 @@
 class Hand < ActiveRecord::Base
   has_many :cards
+  has_one :round, through: :cards
   belongs_to :player
-  belongs_to :deck
-  belongs_to :round
 
   def create_two_cards
     deck = self.deck
