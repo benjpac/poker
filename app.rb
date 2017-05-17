@@ -27,13 +27,3 @@ get '/2_player_deal' do
   end
   erb(:two_player_deal)
 end
-
-
-# sequence
-# 
-# deal cards to players
-#
-# Small blind
-# Big blind
-#
-# check

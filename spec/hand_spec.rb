@@ -9,8 +9,6 @@ describe Hand do
     round = Round.create
     hand = Hand.create
     hand.create_hand
-
-    binding.pry
     expect(Card.all.where(hand_id: hand.id).length).to eq(2)
   end
 
@@ -52,9 +50,9 @@ describe Hand do
       card6 = Card.create(suit: "s", value: 14, round_id: round.id)
       card7 = Card.create(suit: "s", value: 10, round_id: round.id)
       hand = Hand.create
-      card1 = Card.create(suit: "s", value: 7, hand_id: hand.id, round_id: round.id)
-      card2 = Card.create(suit: "s", value: 6, hand_id: hand.id, round_id: round.id)
-      expect(hand.rank_hand).to eq(90014)
+      card1 = Card.create(suit: "s", value: 7, round_id: round.id)
+      card2 = Card.create(suit: "s", value: 6, round_id: round.id)
+      expect(hand.rank_hand(round)).to eq(90014)
     end
 
     it "gives a rank of 900xx for a straight flush" do
@@ -65,9 +63,9 @@ describe Hand do
       card6 = Card.create(suit: "s", value: 9, round_id: round.id)
       card7 = Card.create(suit: "s", value: 10, round_id: round.id)
       hand = Hand.create
-      card1 = Card.create(suit: "s", value: 7, hand_id: hand.id, round_id: round.id)
-      card2 = Card.create(suit: "s", value: 6, hand_id: hand.id, round_id: round.id)
-      expect(hand.rank_hand).to eq(90013)
+      card1 = Card.create(suit: "s", value: 7, round_id: round.id)
+      card2 = Card.create(suit: "s", value: 6, round_id: round.id)
+      expect(hand.rank_hand(round)).to eq(90013)
     end
 
     it "gives a rank of 800xx for four_of_a_kind" do
@@ -78,9 +76,9 @@ describe Hand do
       card6 = Card.create(suit: "s", value: 9, round_id: round.id)
       card7 = Card.create(suit: "h", value: 13, round_id: round.id)
       hand = Hand.create
-      card1 = Card.create(suit: "s", value: 7, hand_id: hand.id, round_id: round.id)
-      card2 = Card.create(suit: "s", value: 6, hand_id: hand.id, round_id: round.id)
-      expect(hand.rank_hand).to eq(80013)
+      card1 = Card.create(suit: "s", value: 7, round_id: round.id)
+      card2 = Card.create(suit: "s", value: 6, round_id: round.id)
+      expect(hand.rank_hand(round)).to eq(80013)
     end
 
     it "gives a rank of 700xx for full house" do
@@ -91,9 +89,9 @@ describe Hand do
       card6 = Card.create(suit: "s", value: 9, round_id: round.id)
       card7 = Card.create(suit: "h", value: 13, round_id: round.id)
       hand = Hand.create
-      card1 = Card.create(suit: "s", value: 7, hand_id: hand.id, round_id: round.id)
-      card2 = Card.create(suit: "s", value: 6, hand_id: hand.id, round_id: round.id)
-      expect(hand.rank_hand).to eq(70013)
+      card1 = Card.create(suit: "s", value: 7, round_id: round.id)
+      card2 = Card.create(suit: "s", value: 6, round_id: round.id)
+      expect(hand.rank_hand(round)).to eq(70013)
     end
 
     it "gives a rank of 600xx for a flush" do
@@ -104,9 +102,9 @@ describe Hand do
       card6 = Card.create(suit: "s", value: 9, round_id: round.id)
       card7 = Card.create(suit: "h", value: 13, round_id: round.id)
       hand = Hand.create
-      card1 = Card.create(suit: "s", value: 7, hand_id: hand.id, round_id: round.id)
-      card2 = Card.create(suit: "s", value: 6, hand_id: hand.id, round_id: round.id)
-      expect(hand.rank_hand).to eq(60013)
+      card1 = Card.create(suit: "s", value: 7, round_id: round.id)
+      card2 = Card.create(suit: "s", value: 6, round_id: round.id)
+      expect(hand.rank_hand(round)).to eq(60013)
     end
 
     it "gives a rank of 500xx for a straight" do
@@ -117,22 +115,22 @@ describe Hand do
       card6 = Card.create(suit: "s", value: 10, round_id: round.id)
       card7 = Card.create(suit: "h", value: 11, round_id: round.id)
       hand = Hand.create
-      card1 = Card.create(suit: "s", value: 9, hand_id: hand.id, round_id: round.id)
-      card2 = Card.create(suit: "s", value: 6, hand_id: hand.id, round_id: round.id)
-      expect(hand.rank_hand).to eq(50013)
+      card1 = Card.create(suit: "s", value: 9, round_id: round.id)
+      card2 = Card.create(suit: "s", value: 6, round_id: round.id)
+      expect(hand.rank_hand(round)).to eq(50013)
     end
 
     it "gives a rank of 600xx for a flush even if there is a triple in all seven cards" do
       round = Round.create
       card3 = Card.create(suit: "s", value: 13, round_id: round.id)
       card4 = Card.create(suit: "d", value: 13, round_id: round.id)
-      card5 = Card.create(suit: "s", value: 9, round_id: round.id)
+      card5 = Card.create(suit: "s", value: 10, round_id: round.id)
       card6 = Card.create(suit: "s", value: 9, round_id: round.id)
       card7 = Card.create(suit: "h", value: 13, round_id: round.id)
       hand = Hand.create
-      card1 = Card.create(suit: "s", value: 7, hand_id: hand.id, round_id: round.id)
-      card2 = Card.create(suit: "s", value: 6, hand_id: hand.id, round_id: round.id)
-      expect(hand.rank_hand).to eq(60013)
+      card1 = Card.create(suit: "s", value: 7, round_id: round.id)
+      card2 = Card.create(suit: "s", value: 6, round_id: round.id)
+      expect(hand.rank_hand(round)).to eq(60013)
     end
 
     it "gives a rank of 500xx for a straight even if there is a triple in all seven cards" do
@@ -143,9 +141,9 @@ describe Hand do
       card6 = Card.create(suit: "s", value: 10, round_id: round.id)
       card7 = Card.create(suit: "h", value: 11, round_id: round.id)
       hand = Hand.create
-      card1 = Card.create(suit: "s", value: 9, hand_id: hand.id, round_id: round.id)
-      card2 = Card.create(suit: "d", value: 13, hand_id: hand.id, round_id: round.id)
-      expect(hand.rank_hand).to eq(50013)
+      card1 = Card.create(suit: "s", value: 9, round_id: round.id)
+      card2 = Card.create(suit: "d", value: 13, round_id: round.id)
+      expect(hand.rank_hand(round)).to eq(50013)
     end
 
     it "gives a rank of 400xx for three_of_a_kind" do
@@ -156,9 +154,9 @@ describe Hand do
       card6 = Card.create(suit: "s", value: 11, round_id: round.id)
       card7 = Card.create(suit: "h", value: 13, round_id: round.id)
       hand = Hand.create
-      card1 = Card.create(suit: "s", value: 9, hand_id: hand.id, round_id: round.id)
-      card2 = Card.create(suit: "d", value: 4, hand_id: hand.id, round_id: round.id)
-      expect(hand.rank_hand).to eq(40013)
+      card1 = Card.create(suit: "s", value: 9, round_id: round.id)
+      card2 = Card.create(suit: "d", value: 4, round_id: round.id)
+      expect(hand.rank_hand(round)).to eq(40013)
     end
 
     it "gives a rank of 3xxxx for two pair" do
@@ -169,9 +167,9 @@ describe Hand do
       card6 = Card.create(suit: "s", value: 12, round_id: round.id)
       card7 = Card.create(suit: "h", value: 11, round_id: round.id)
       hand = Hand.create
-      card1 = Card.create(suit: "s", value: 9, hand_id: hand.id, round_id: round.id)
-      card2 = Card.create(suit: "d", value: 4, hand_id: hand.id, round_id: round.id)
-      expect(hand.rank_hand).to eq(31312)
+      card1 = Card.create(suit: "s", value: 9, round_id: round.id)
+      card2 = Card.create(suit: "d", value: 4, round_id: round.id)
+      expect(hand.rank_hand(round)).to eq(31312)
     end
 
     it "gives a rank of 2xxxx for a pair" do
@@ -182,22 +180,22 @@ describe Hand do
       card6 = Card.create(suit: "s", value: 6, round_id: round.id)
       card7 = Card.create(suit: "h", value: 11, round_id: round.id)
       hand = Hand.create
-      card1 = Card.create(suit: "s", value: 9, hand_id: hand.id, round_id: round.id)
-      card2 = Card.create(suit: "d", value: 4, hand_id: hand.id, round_id: round.id)
-      expect(hand.rank_hand).to eq(21311)
+      card1 = Card.create(suit: "s", value: 9, round_id: round.id)
+      card2 = Card.create(suit: "d", value: 4, round_id: round.id)
+      expect(hand.rank_hand(round)).to eq(21311)
     end
 
     it "gives a rank of 100xx for a high card" do
       round = Round.create
       card3 = Card.create(suit: "s", value: 13, round_id: round.id)
-      card4 = Card.create(suit: "d", value: 18, round_id: round.id)
+      card4 = Card.create(suit: "d", value: 8, round_id: round.id)
       card5 = Card.create(suit: "h", value: 5, round_id: round.id)
       card6 = Card.create(suit: "s", value: 6, round_id: round.id)
       card7 = Card.create(suit: "h", value: 11, round_id: round.id)
       hand = Hand.create
-      card1 = Card.create(suit: "s", value: 9, hand_id: hand.id, round_id: round.id)
-      card2 = Card.create(suit: "d", value: 4, hand_id: hand.id, round_id: round.id)
-      expect(hand.rank_hand).to eq(10013)
+      card1 = Card.create(suit: "s", value: 9, round_id: round.id)
+      card2 = Card.create(suit: "d", value: 4, round_id: round.id)
+      expect(hand.rank_hand(round)).to eq(10013)
     end
   end
 
@@ -210,13 +208,13 @@ describe Hand do
       card6 = Card.create(suit: "d", value: 14, round_id: round.id)
       card7 = Card.create(suit: "s", value: 9, round_id: round.id)
       hand = Hand.create
-      card1 = Card.create(suit: "s", value: 7, hand_id: hand.id, round_id: round.id)
-      card2 = Card.create(suit: "c", value: 6, hand_id: hand.id, round_id: round.id)
-      expect(Hand.add_round_and_sort).to eq([card6, card7, card1, card2, card3, card4, card5])
+      card1 = Card.create(suit: "s", value: 7, round_id: round.id)
+      card2 = Card.create(suit: "c", value: 6, round_id: round.id)
+      expect(hand.add_round_and_sort(round)).to eq([card6, card7, card1, card2, card3, card4, card5])
     end
   end
 
-  describe "get_five" do
+  describe "combinations" do
     it "returns all combinations of five" do
       round = Round.create
       card3 = Card.create(suit: "s", value: 5, round_id: round.id)
@@ -225,9 +223,9 @@ describe Hand do
       card6 = Card.create(suit: "d", value: 14, round_id: round.id)
       card7 = Card.create(suit: "s", value: 9, round_id: round.id)
       hand = Hand.create
-      card1 = Card.create(suit: "s", value: 7, hand_id: hand.id, round_id: round.id)
-      card2 = Card.create(suit: "c", value: 6, hand_id: hand.id, round_id: round.id)
-      expect(Hand.combinations).to include([card6, card7, card3, card4, card5])
+      card1 = Card.create(suit: "s", value: 7, round_id: round.id)
+      card2 = Card.create(suit: "c", value: 6, round_id: round.id)
+      expect(hand.combinations(round)).to include([card6, card7, card3, card4, card5])
     end
     it "has length" do
       round = Round.create
@@ -237,9 +235,9 @@ describe Hand do
       card6 = Card.create(suit: "d", value: 14, round_id: round.id)
       card7 = Card.create(suit: "s", value: 9, round_id: round.id)
       hand = Hand.create
-      card1 = Card.create(suit: "s", value: 7, hand_id: hand.id, round_id: round.id)
-      card2 = Card.create(suit: "c", value: 6, hand_id: hand.id, round_id: round.id)
-      expect(Hand.combinations.length).to eq(42)
+      card1 = Card.create(suit: "s", value: 7, round_id: round.id)
+      card2 = Card.create(suit: "c", value: 6, round_id: round.id)
+      expect(hand.combinations(round).length).to eq(42)
     end
   end
 

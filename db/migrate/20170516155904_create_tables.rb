@@ -20,6 +20,5 @@ class CreateTables < ActiveRecord::Migration[5.1]
     create_table :rounds do |t|
       t.column :pot, :integer
     end
-
   end
 end

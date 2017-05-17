@@ -14,9 +14,6 @@ class Hand < ActiveRecord::Base
   #   self.update(bet: self.bet + amt)
   # end
 
-  def create_two_cards
-    deck = self.deck
-
   def create_hand
     for i in 1..2
       random_card = Card.pull_random_card
@@ -30,9 +27,9 @@ class Hand < ActiveRecord::Base
     return sorted = small_to_large.reverse
   end
 
-  def get_five
+  def combinations(round)
     combinations = []
-    seven = self.add_round_and_sort
+    seven = self.add_round_and_sort(round)
     seven.each do |card1|
       six = seven - [card1]
       six.each do |card2|
@@ -40,12 +37,13 @@ class Hand < ActiveRecord::Base
         combinations.push(five)
       end
     end
+
     return combinations
   end
 
-  def rank_hand
-    combinations = self.get_five
-    seven = self.add_round_and_sort
+  def rank_hand(round)
+    combinations = self.combinations(round)
+    seven = self.add_round_and_sort(round)
 
     flush = 0
     flush_hand = []
@@ -104,7 +102,7 @@ class Hand < ActiveRecord::Base
       score = 80000 + four_of_a_kind
     elsif three_of_a_kind > 0
       four = seven.delete_if {|card| card.value == three_of_a_kind}
-      if four.pair > 0
+      if Hand.pair(four) > 0
         score = 70000 + three_of_a_kind
       else
         if flush > 0
@@ -121,13 +119,13 @@ class Hand < ActiveRecord::Base
       score = 50000 + straight
     elsif pair > 0
       five = seven.delete_if {|card| card.value == pair}
-      if five.pair > 0
-        score = 30000 + 100*pair + five.pair
+      if Hand.pair(five) > 0
+        score = 30000 + 100*pair + Hand.pair(five)
       else
-        score = 20000 + 100*pair + five[0]
+        score = 20000 + 100*pair + five[0].value
       end
     else
-      score = seven[0]
+      score = 10000 + seven[0].value
     end
   end
 
@@ -188,10 +186,10 @@ class Hand < ActiveRecord::Base
     end
 
     def pair(five)
-      five.each do |card1|
+      five.each do |card|
         four = five - [card]
-        four.each do |card2|
-          if card1.value == card2.value
+        four.each do |card1|
+          if card.value == card1.value
             return card1.value
           end
         end
