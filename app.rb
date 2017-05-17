@@ -9,7 +9,7 @@ get '/' do
   erb :index
 end
 
-get '/how_many_players'do
+get '/how_many_players' do
   erb :how_many_players
 end
 
