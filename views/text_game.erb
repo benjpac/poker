@@ -1,10 +1,14 @@
 <div class="row">
   <div class="col-md-6">
-    <% player = Player.find(round.active_player_id) %>
+    <% player = Player.find(@round.active_player_id) %>
     <h1>player.name</h1>
-    <% player.hand.cards.each do |card| %>
-      <h1><%= card.image_string %></h1>
+    <% cards_in_hand = player.hands.first.cards %>
+    <% if cards_in_hand != [] %>
+      <% cards_in_hand.each do |card| %>
+        <h1><%= card.image_string %></h1>
+      <% end %>
     <% end %>
+
     <form action="/text/fold" method="post">
       <button type="submit">Fold</button>
     </form>
@@ -18,6 +22,8 @@
       </div>
       <button type="submit">Raise</button>
     </form>
-
+    <% binding.pry %>
+    <h3>Current bet: $<%= player.hands.first.bet %></h3>
+    <h3>Available funds: $<%= player.money %></h3>
   </div>
 </div>
