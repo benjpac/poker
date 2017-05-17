@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col-md-12">
+    <% if @hand != nil %>
+      <% @hand.cards.each do |card| %>
+        <h1>you have <%= image_string(card) %></h1>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <form action="/text/vs_computer" method="post">
+      <button type="submit" name="button">vs computer</button>
+    </form>
+  </div>
+</div>

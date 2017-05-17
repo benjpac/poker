@@ -24,7 +24,7 @@ class Hand < ActiveRecord::Base
   def add_round_and_sort(round)
     seven_cards = self.cards + round.cards
     small_to_large = seven_cards.sort_by {|card| card.value}
-    return sorted = small_to_large.reverse
+    return small_to_large.reverse
   end
 
   def combinations(round)
