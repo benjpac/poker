@@ -1,0 +1,34 @@
+<div class="z-index-1">
+  <img src="/img/twoplayer.jpg"/>
+</div>
+<div class="z-index-2">
+  <div class="white">
+    <% active_player = Player.find(@round.active_player_id) %>
+    <% inactive_player = Player.find(@round.inactive_player_id) %>
+    <h2>Pot: $<%= @round.pot + active_player.hand.bet + inactive_player.hand.bet%></h2>
+    <h1><%= active_player.name %></h1>
+    
+    <h3>Your opponent's bet: $<%= inactive_player.hand.bet %></h3></h3>
+    <h3>Your current bet: $<%= active_player.hand.bet %></h3>
+    <h3>Available funds: $<%= active_player.money %></h3>
+
+    <a href="#"><img id="check" src="/img/buttons/check.png"></a>
+    <a href="#"><img id="call"src="/img/buttons/call.png"></a>
+    <a href="#"><img id="fold" src="/img/buttons/fold.png"></a>
+    <a href="#"><img id="raise" src="/img/buttons/raise.png"></a>
+    <div class="cards">
+      <img id="deck" src="/img/deck.png"></a>
+      <img id="card1" src="/img/Cards/c_2.png">
+      <img id="card2" src="/img/Cards/c_2.png">
+      <img id="card3" src="/img/Cards/c_2.png">
+      <img id="card4" src="/img/Cards/c_2.png">
+      <img id="card5" src="/img/Cards/c_2.png">
+      <% cards_in_hand = active_player.hand.cards %>
+      <% if cards_in_hand != [] %>
+        <% cards_in_hand.each_with_index do |card, index| %>
+          <img id="hand_card<%= index %>" src="/img/Cards/<%= card.image_string %>.png">
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

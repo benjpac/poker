@@ -4,8 +4,11 @@ also_reload 'lib/**/*.rb'
 
 Dir[File.dirname(__FILE__) + '/lib/*.rb'].each { |file| require file }
 
-
 get '/' do
+  erb :start
+end
+
+get '/popup' do
   erb :index
 end
 
@@ -34,7 +37,7 @@ get '/text/2_player/round/:round_id' do
   # @players = Player.all
   # @hands = Hand.all
   @round = Round.find(params[:round_id].to_i)
-  erb :text_game
+  erb :game
 end
 
 patch '/text/fold/round/:round_id' do
