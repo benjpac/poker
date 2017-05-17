@@ -10,18 +10,30 @@
   z-index: 2;
 }
 
+.z-index-2 {
+  position: absolute;
+  z-index: 2;
+}
+
+.name-form {
+  position: absolute;
+  top: 430px;
+  left: 440px;
+}
+
+.name-form label {
+  color: white;  
+}
+
+
 #play_now {
   position: absolute;
-  top: 480px;
+  width: 290px;
+  top: 600px;
   left: 363px;
 }
 
-#play_now img {
-  position: absolute;
-  width: 300px;
-}
-
-#select-players1 img {
+#select-players1 {
   position: absolute;
   width: 200px;
   top: 480px;
@@ -133,6 +145,30 @@
   position: absolute;
      top: 315px;
      left: 665px;
+     height: 100px;
+     -webkit-animation-name: example;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-delay: -1s;
+    animation-name: example;
+    animation-duration: 3s;
+}
+
+.cards #hand_card1{
+  position: absolute;
+     top: 500px;
+     left: 460px;
+     height: 100px;
+     -webkit-animation-name: example;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-delay: -1s;
+    animation-name: example;
+    animation-duration: 3s;
+}
+
+.cards #hand_card2{
+  position: absolute;
+     top: 500px;
+     left: 485px;
      height: 100px;
      -webkit-animation-name: example;
     -webkit-animation-duration: 2s;
