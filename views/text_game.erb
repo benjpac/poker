@@ -13,15 +13,18 @@
     <% end %>
 
     <form action="/text/fold/round/<%= @round.id %>" method="post">
+      <input type="hidden" name="_method" value="patch">
       <button type="submit">Fold</button>
     </form>
     <form action="/text/call/round/<%= @round.id %>" method="post">
+      <input type="hidden" name="_method" value="patch">
       <button type="submit">Call</button>
     </form>
     <form action="/text/raise/round/<%= @round.id %>" method="post">
+      <input type="hidden" name="_method" value="patch">
       <div class="form-group">
         <label for="raise"></label>
-        <input type="text" name="raise">
+        <input type="number" name="raise">
       </div>
       <button type="submit">Raise</button>
     </form>

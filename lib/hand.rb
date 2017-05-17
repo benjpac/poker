@@ -3,6 +3,11 @@ class Hand < ActiveRecord::Base
   belongs_to :round
   belongs_to :player
 
+  def win(round, blind)
+    inactive_player = Player.find(round.inactive_player_id)
+    inactive_player.hand.move_to_pot(round)
+
+  end
 
   def fold(round)
     move_to_pot(round)

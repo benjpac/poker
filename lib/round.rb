@@ -24,8 +24,14 @@ class Round < ActiveRecord::Base
   end
 
   def inactive_player_id
-    active_player_id
-    inactive_player = Player.all.where(round_id: self.id) - [Player.find(active_player_id)]
-    return inactive_player.first.id
+    inactive_players = self.players_in_game - [Player.find(self.active_player_id)]
+    return inactive_players.first.id
+  end
+
+  def players_in_game
+    players_in_game = []
+    hands_in_game = Hand.all.where(round_id: self.id)
+    hands_in_game.each {|hand| players_in_game.push(hand.player)}
+    return players_in_game
   end
 end
