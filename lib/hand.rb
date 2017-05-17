@@ -3,16 +3,16 @@ class Hand < ActiveRecord::Base
   belongs_to :round
   belongs_to :player
 
-  # def fold
-  #   self.round.update(pot: self.rount.pot + self.bet)
-  #   self.update (bet: 0)
-  #   destroy
-  # end
-  #
-  # def bet(amt)
-  #   self.player.update(money: self.player.money - amt)
-  #   self.update(bet: self.bet + amt)
-  # end
+  def fold(round)
+    round.update(pot: (round.pot + self.bet))
+    self.update(bet: 0)
+  end
+
+  def make_bet(amt)
+    binding.pry
+    self.player.update(money: (self.player.money - amt))
+    self.update(bet: (self.bet + amt))
+  end
 
   def create_hand
     for i in 1..2
@@ -46,17 +46,11 @@ class Hand < ActiveRecord::Base
     seven = self.add_round_and_sort(round)
 
     flush = 0
-    flush_hand = []
     straight = 0
-    straight_hand = []
     four_of_a_kind = 0
-    four_of_a_kind_hand = []
     full_house = 0
-    full_house_hand = []
     three_of_a_kind = 0
-    three_of_a_kind_hand = []
     pair = 0
-    pair_hand = []
 
     score = 0
 

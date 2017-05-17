@@ -24,19 +24,19 @@ describe Hand do
     it "updates the bet and pot" do
       hand = Hand.create(bet: 20)
       round = Round.create(pot: 0)
-      hand.fold(10)
+      hand.fold(round)
       expect(hand.bet).to eq(0)
       expect(round.pot).to eq(20)
     end
   end
 
-  describe "bet" do
+  describe "make_bet" do
     it "updates the player money and bet" do
-      hand = Hand.create(bet: 0)
-      player = hand.player.create(money: 100)
-      hand.bet(10)
+      player = Player.create(money: 100)
+      hand = Hand.create(bet: 0, player_id: player.id)
+      hand.make_bet(10)
       expect(hand.bet).to eq(10)
-      expect(player.money).to eq(90)
+      expect(hand.player.money).to eq(90)
     end
   end
 
