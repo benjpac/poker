@@ -1,92 +1,92 @@
-
-/*play now button centering*/
-/*.front img {
-position: fixed;
-top: 550px;
-left: 590px;
-}*/
-
 /*background image for the index page*/
-.z-index-1 {
-  z-index: 1;
-}
-
-.z-index-2 {
-  z-index: 2;
-}
-
-#banner {
+.z-index-1 img{
   position: absolute;
+  z-index: 1;
+
+}
+
+.z-index-2 img{
+  position: absolute;
+  z-index: 2;
 }
 
 #play_now {
   position: absolute;
   top: 480px;
-  left: 275px;
+  left: 363px;
 }
 
-/*background image for the table*/
-.two{
-    background-image: url("/img/twoplayer.jpg");
-    background-repeat: no-repeat;
-    background-size: 1440px;
-    background-position: top;
-    z-index: 2;
+#play_now img {
+  position: absolute;
+  width: 300px;
 }
 
-
-
-/*background image for 2players*/
-.two_player{
-    background-image: url("/img/banner.jpg");
-    background-repeat: no-repeat;
-    background-size: 1440px;
-    background-position: top;
+#select-players1 img {
+  position: absolute;
+  width: 200px;
+  top: 480px;
+  left: 150px;
 }
 
-
-
-/*slow transition-- hover over the player button*/
-.two_player:hover{
-  -webkit-transition: all 1500ms ease;
-  -moz-transition: all 1500ms ease;
-  -ms-transition: all 1500ms ease;
-  -o-transition: all 1500ms ease;
-  transition: all 1500ms ease;
-  background-image: url("/img/twoplayer.jpg");
-}
-.two_player img{
-position: fixed;
-top: 60%;
-padding-left: 100px;
-height: 100px;
-width: auto;
+#select-players2 img {
+  position: absolute;
+  width: 200px;
+  top: 480px;
+  left: 400px;
 }
 
-div.buttons{
-  position: fixed;
-  top: 20%;
-  padding-left: 450px;
-  height: 100px;
-  width: auto;
+#select-players3 img {
+  position: absolute;
+  width: 200px;
+  top: 480px;
+  left: 650px;
 }
 
+#check {
+  position: absolute;
+  width: 150px;
+  top: 650px;
+  left: 140px;
+}
 
+#call {
+  position: absolute;
+  width: 150px;
+  top: 650px;
+  left: 340px;
+}
+
+#raise {
+  position: absolute;
+  width: 150px;
+  top: 650px;
+  left: 540px;
+}
+
+#fold {
+  position: absolute;
+  width: 150px;
+  top: 650px;
+  left: 740px;
+}
 
 /*card transitions begin on the table*/
 @keyframes example {
-    0%   {left:600px; top:550px;}
-    25%  {left:600px; top:550px;}
+    25%  {left:300px; top:315px;}
 }
 
-#cards .card1{
-  position: fixed;
-     top: 50%;
-     left: 50%;
-     width: auto;
-     height: 110px;
-     margin-top: 100px;
-     margin-left: 0px;
+.cards #deck{
+  position: absolute;
+     top: 300px;
+     left: 270px;
+     height: 127px;
+}
+
+.cards #card1{
+  position: absolute;
+     top: 315px;
+     left: 365px;
+     height: 100px;
      -webkit-animation-name: example;
     -webkit-animation-duration: 2s;
     -webkit-animation-delay: -1s;
@@ -94,28 +94,22 @@ div.buttons{
     animation-duration: 3s;
 }
 
-#cards .card2{
-  position: fixed;
-     top: 50%;
-     left: 45%;
-     width: auto;
-     height: 110px;
-     margin-top: 100px;
-     margin-left: 0px;
+.cards #card2{
+  position: absolute;
+     top: 315px;
+     left: 440px;
+     height: 100px;
      -webkit-animation-name: example;
     -webkit-animation-duration: 2s;
     -webkit-animation-delay: -1s;
     animation-name: example;
     animation-duration: 3s;
 }
-#cards .card3{
-  position: fixed;
-     top: 50%;
-     left: 40%;
-     width: auto;
-     height: 110px;
-     margin-top: 100px;
-     margin-left: 0px;
+.cards #card3{
+  position: absolute;
+     top: 315px;
+     left: 515px;
+     height: 100px;
      -webkit-animation-name: example;
     -webkit-animation-duration: 2s;
     -webkit-animation-delay: -1s;
@@ -123,14 +117,26 @@ div.buttons{
     animation-duration: 3s;
 }
 
-#cards .deck{
-  position: fixed;
-     top: 49%;
-     left: 33%;
-     width: auto;
-     height: 140px;
-     margin-top: 100px;
-     margin-left: 0px;
+.cards #card4{
+  position: absolute;
+     top: 315px;
+     left: 590px;
+     height: 100px;
+     -webkit-animation-name: example;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-delay: -1s;
+    animation-name: example;
+    animation-duration: 3s;
 }
 
-/*end card transitions on table*/
+.cards #card5{
+  position: absolute;
+     top: 315px;
+     left: 665px;
+     height: 100px;
+     -webkit-animation-name: example;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-delay: -1s;
+    animation-name: example;
+    animation-duration: 3s;
+}
