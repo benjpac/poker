@@ -25,7 +25,6 @@ class Card < ActiveRecord::Base
 
   end
 
-
   def image_string(card)
     suit = self.suit
     value = self.value.to_s

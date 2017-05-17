@@ -6,12 +6,20 @@ describe Hand do
 
   it 'creates a flop' do
     Card.create_deck
-    round = Round.create
     hand = Hand.create
     hand.create_hand
-
-    binding.pry
     expect(Card.all.where(hand_id: hand.id).length).to eq(2)
+  end
+
+  it 'returns cards in hand and in round (community cards)' do
+    Card.create_deck
+    hand = Hand.create
+    hand.create_hand
+    round = Round.create
+    round.create_flop
+    round.create_turn
+    round.create_river
+    expect(hand.add_round_and_sort(round).length).to eq(7)
   end
 
 
