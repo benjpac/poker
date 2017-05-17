@@ -4,6 +4,16 @@ describe Hand do
   it { should have_many(:cards) }
   it { should belong_to(:player) }
 
+  it 'creates a flop' do
+    Card.create_deck
+    round = Round.create
+    hand = Hand.create
+    hand.create_hand
+
+    binding.pry
+    expect(Card.all.where(hand_id: hand.id).length).to eq(2)
+  end
+
 
   # it 'it creates a deck, a flop, 2 player cards, a turn, a river, and returns them' do
   #   deck = Deck.create

@@ -1,17 +1,16 @@
 class Hand < ActiveRecord::Base
   has_many :cards
-  has_one :round, through: :cards
+  belongs_to :round
   belongs_to :player
 
-  def create_two_cards
-    deck = self.deck
+  def create_hand
     for i in 1..2
-      random_card = deck.pull_random_card
+      random_card = Card.pull_random_card
       random_card.update(hand_id: self.id)
     end
   end
 
-  def add_round_and_sort
+  def add_round_and_sort(round)
     seven_cards = self.cards + round.cards
     small_to_large = seven_cards.sort_by {|card| card.value}
     return sorted = small_to_large.reverse
