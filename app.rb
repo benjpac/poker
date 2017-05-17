@@ -36,9 +36,36 @@ get '/text' do
   erb :text
 end
 
-post '/text/vs_computer' do
+get '/text/form' do
+  erb :text_form
+end
+
+post '/text/form' do
+  redirect '/text/form'
+end
+
+post '/text/players' do
+  @player1 = Player.create(name: params[:player1], money: 100)
+
+  @player2 = Player.create(name: params[:player2], money: 100)
   Card.create_deck
-  @hand = Hand.create
-  @hand.create_hand
+  @hand1 = @player1.hands.create
+  @hand1.create_hand
+  @hand2 = @player2.hands.create
+  @hand2.create_hand
+  @player_turn = 1
+  erb :text_game
+  # Player.all.each do |player|
+  #   hand = player.hands.create
+  #   hand.create_hand
+  # end
+  # redirect '/text/2_player'
+end
+
+get '/text/2_player' do
+  binding.pry
+  Card.create_deck
+  @players = Player.all
+  @hands = Hand.all
   erb :text
 end

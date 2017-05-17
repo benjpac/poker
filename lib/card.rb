@@ -19,13 +19,13 @@ class Card < ActiveRecord::Base
     end
 
     def pull_random_card
-      remaining_cards = Card.all.remaining_cards
+      remaining_cards = Card.remaining_cards
       return remaining_cards.sample
     end
 
   end
 
-  def image_string(card)
+  def image_string
     suit = self.suit
     value = self.value.to_s
     return suit + "_" + value

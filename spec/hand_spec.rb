@@ -30,11 +30,11 @@ describe Hand do
   #
   # end
 
-  describe "fold" do
+  describe "move_to_pot" do
     it "updates the bet and pot" do
       hand = Hand.create(bet: 20)
       round = Round.create(pot: 0)
-      hand.fold(round)
+      hand.move_to_pot(round)
       expect(hand.bet).to eq(0)
       expect(round.pot).to eq(20)
     end

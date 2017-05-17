@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-md-6">
+    <% player = Player.find(round.active_player_id) %>
+    <h1>player.name</h1>
+    <% player.hand.cards.each do |card| %>
+      <h1><%= card.image_string %></h1>
+    <% end %>
+    <form action="/text/fold" method="post">
+      <button type="submit">Fold</button>
+    </form>
+    <form action="/text/call" method="post">
+      <button type="submit">Call</button>
+    </form>
+    <form action="/text/raise" method="post">
+      <div class="form-group">
+        <label for="raise"></label>
+        <input type="text" name="raise">
+      </div>
+      <button type="submit">Raise</button>
+    </form>
+
+  </div>
+</div>

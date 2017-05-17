@@ -18,4 +18,8 @@ class Round < ActiveRecord::Base
     random_card = Card.pull_random_card
     random_card.update(round_id: self.id)
   end
+
+  def change_active_player(player_id)
+    round.update(active_player_id: player.id)
+  end
 end

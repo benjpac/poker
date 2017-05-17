@@ -3,7 +3,13 @@ class Hand < ActiveRecord::Base
   belongs_to :round
   belongs_to :player
 
+
   def fold(round)
+    move_to_pot(round)
+    self.destroy
+  end
+
+  def move_to_pot(round)
     round.update(pot: (round.pot + self.bet))
     self.update(bet: 0)
   end

@@ -19,6 +19,7 @@ class CreateTables < ActiveRecord::Migration[5.1]
 
     create_table :rounds do |t|
       t.column :pot, :integer
+      t.column :active_player_id, :integer
     end
   end
 end
