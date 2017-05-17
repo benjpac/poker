@@ -14,9 +14,6 @@ class Hand < ActiveRecord::Base
   #   self.update(bet: self.bet + amt)
   # end
 
-  def create_two_cards
-    deck = self.deck
-
   def create_hand
     for i in 1..2
       random_card = Card.pull_random_card
