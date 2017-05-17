@@ -45,27 +45,22 @@ post '/text/form' do
 end
 
 post '/text/players' do
-  @player1 = Player.create(name: params[:player1], money: 100)
+  player1 = Player.create(name: params[:player1], money: 100)
 
-  @player2 = Player.create(name: params[:player2], money: 100)
+  player2 = Player.create(name: params[:player2], money: 100)
   Card.create_deck
-  @hand1 = @player1.hands.create
-  @hand1.create_hand
-  @hand2 = @player2.hands.create
-  @hand2.create_hand
-  @player_turn = 1
-  erb :text_game
-  # Player.all.each do |player|
-  #   hand = player.hands.create
-  #   hand.create_hand
-  # end
-  # redirect '/text/2_player'
+  hand1 = player1.hands.create(bet: 0)
+  hand1.create_hand
+  hand2 = player2.hands.create(bet: 0)
+  hand2.create_hand
+  round = Round.create(active_player_id: player1.id)
+  redirect '/text/2_player/round/'.concat(round.id.to_s)
 end
 
-get '/text/2_player' do
-  binding.pry
+get '/text/2_player/round/:round_id' do
   Card.create_deck
   @players = Player.all
   @hands = Hand.all
-  erb :text
+  @round = Round.find(params[:round_id].to_i)
+  erb :text_game
 end
