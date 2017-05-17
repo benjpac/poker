@@ -9,39 +9,19 @@ get '/' do
   erb :index
 end
 
-get '/how_many_players' do
-  erb :how_many_players
+get '/text' do
+  erb :text
 end
 
 get '/deal' do
   erb :deal
 end
 
-get '/2_player_deal' do
-  Card.create_deck
-  @hand = Hand.create
-  @hand.create_hand
-  @round = Round.create
-  @card_urls = []
-  @round.cards.each do |card|
-    @card_urls.push(card.image_string)
-  end
-  erb :two_player_deal
+get '/player_names' do
+  erb :player_names
 end
 
-get '/text' do
-  erb :text
-end
-
-get '/text/form' do
-  erb :text_form
-end
-
-post '/text/form' do
-  redirect '/text/form'
-end
-
-post '/text/players' do
+post '/play_game' do
   round = Round.create(pot: 0)
   player1 = Player.create(name: params[:player1], money: 100)
   player2 = Player.create(name: params[:player2], money: 100)
