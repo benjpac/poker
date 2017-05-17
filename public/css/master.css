@@ -1,34 +1,46 @@
 
 /*play now button centering*/
-.front img{
+/*.front img {
 position: fixed;
-top: 60%;
-left: 47%;
-margin: -70px 0 0 -170px;
-}
+top: 550px;
+left: 590px;
+}*/
 
 /*background image for the index page*/
-body.front{
-    background-image: url("/img/banner.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: top;
+.z-index-1 {
+  z-index: 1;
 }
+
+.z-index-2 {
+  z-index: 2;
+}
+
+#banner {
+  position: absolute;
+}
+
+#play_now {
+  position: absolute;
+  top: 480px;
+  left: 275px;
+}
+
 /*background image for the table*/
-body.two{
+.two{
     background-image: url("/img/twoplayer.jpg");
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 1440px;
     background-position: top;
+    z-index: 2;
 }
 
 
 
 /*background image for 2players*/
-body.two_player{
+.two_player{
     background-image: url("/img/banner.jpg");
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 1440px;
     background-position: top;
 }
 
