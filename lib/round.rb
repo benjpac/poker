@@ -13,6 +13,40 @@ class Round < ActiveRecord::Base
     self.update(active_player_id: player1.id)
   end
 
+  # self.cards is weirdly broken - use "cards.all.where(round_id: self.id)"
+  def deal_cards(current_bet)
+    last_two_bets = [self.last_bet, current_bet]
+    if self.cards.length == 0
+      if last_two_bets == ["call", "check"] || last_two_bets == ["check", "check"]
+        self.update(last_bet: "")
+        self.create_flop
+        self.hands.each {|hand| hand.move_to_pot}
+      else
+        self.update(last_bet: current_bet)
+      end
+    elsif self.cards.length == 3 || self.cards.length == 4
+      if last_two_bets == ["raise", "call"] || last_two_bets == ["check", "check"]
+        self.update(last_bet: "")
+        random_card = Card.pull_random_card
+        random_card.update(round_id: self.id)
+        self.hands.each {|hand| hand.move_to_pot}
+      else
+        self.update(last_bet: current_bet)
+      end
+    elsif self.cards.length == 5
+      if last_two_bets == ["raise", "call"] || last_two_bets == ["check", "check"]
+      self.update(last_bet: "")
+      self.find_winner
+    else
+      self.update(last_bet: current_bet)
+      end
+    end
+  end
+
+  def find_winner
+    
+  end
+
   def create_flop
     for i in 1..3
       random_card = Card.pull_random_card

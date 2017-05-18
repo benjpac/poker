@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20170516155904) do
   create_table "rounds", force: :cascade do |t|
     t.integer "pot"
     t.integer "active_player_id"
+    t.string "last_bet"
   end
 
 end

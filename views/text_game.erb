@@ -4,10 +4,18 @@
     <% inactive_player = Player.find(@round.inactive_player_id) %>
     <%  %>
     <h2>Pot: $<%= @round.pot + active_player.hands.last.bet + inactive_player.hands.last.bet%></h2>
-    <h1><%= active_player.name %></h1>
+    <h1><%= active_player.name %>'s cards:</h1>
     <% cards_in_hand = active_player.hands.last.cards %>
     <% if cards_in_hand != [] %>
       <% cards_in_hand.each do |card| %>
+        <h1><%= card.image_string %></h1>
+      <% end %>
+    <% end %>
+
+    <h1>Shared cards:</h1>
+    <% shared_cards = @round.cards %>
+    <% if shared_cards != [] %>
+      <% shared_cards.each do |card| %>
         <h1><%= card.image_string %></h1>
       <% end %>
     <% end %>
@@ -36,6 +44,9 @@
       <button type="submit">Raise</button>
     </form>
     <h3>Your opponent's bet: $<%= inactive_player.hands.last.bet %></h3></h3>
+    <h3>Opponent's funds: $<%= inactive_player.money %></h3>
+    <br>
+    <br>
     <h3>Your current bet: $<%= active_player.hands.last.bet %></h3>
     <h3>Available funds: $<%= active_player.money %></h3>
   </div>
