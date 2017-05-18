@@ -24,6 +24,7 @@ class Hand < ActiveRecord::Base
   def make_bet(amt)
     self.player.update(money: (self.player.money - amt))
     self.update(bet: (self.bet + amt))
+    binding.pry
   end
 
   def create_hand

@@ -34,6 +34,7 @@ get '/text/2_player/round/:round_id' do
   # @players = Player.all
   # @hands = Hand.all
   @round = Round.find(params[:round_id].to_i)
+  binding.pry
   erb :text_game
 end
 
@@ -43,7 +44,9 @@ patch '/text/fold/round/:round_id' do
   inactive_player = Player.find(round.inactive_player_id.to_i)
   inactive_player.hand.win
   new_round = Round.create(pot: 0)
+  binding.pry
   new_round.create_game(inactive_player, active_player, 1)
+  binding.pry
   redirect '/text/2_player/round/'.concat(new_round.id.to_s)
 
 

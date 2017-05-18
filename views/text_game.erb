@@ -2,6 +2,7 @@
   <div class="col-md-6">
     <% active_player = Player.find(@round.active_player_id) %>
     <% inactive_player = Player.find(@round.inactive_player_id) %>
+    <% binding.pry %>
     <h2>Pot: $<%= @round.pot + active_player.hand.bet + inactive_player.hand.bet%></h2>
     <h1><%= active_player.name %></h1>
     <% cards_in_hand = active_player.hand.cards %>
