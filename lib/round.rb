@@ -15,36 +15,48 @@ class Round < ActiveRecord::Base
 
   # self.cards is weirdly broken - use "cards.all.where(round_id: self.id)"
   def deal_cards(current_bet)
-    last_two_bets = [self.last_bet, current_bet]
-    if self.cards.length == 0
+    round = self
+    last_two_bets = [round.last_bet, current_bet]
+    if round.cards.length == 0
       if last_two_bets == ["call", "check"] || last_two_bets == ["check", "check"]
-        self.update(last_bet: "")
-        self.create_flop
-        self.hands.each {|hand| hand.move_to_pot}
+        round.update(last_bet: "")
+        round.create_flop
+        round.hands.each {|hand| hand.move_to_pot}
       else
-        self.update(last_bet: current_bet)
+        round.update(last_bet: current_bet)
       end
-    elsif self.cards.length == 3 || self.cards.length == 4
+    elsif round.cards.length == 3 || round.cards.length == 4
       if last_two_bets == ["raise", "call"] || last_two_bets == ["check", "check"]
-        self.update(last_bet: "")
+        round.update(last_bet: "")
         random_card = Card.pull_random_card
-        random_card.update(round_id: self.id)
-        self.hands.each {|hand| hand.move_to_pot}
+        random_card.update(round_id: round.id)
+        round.hands.each {|hand| hand.move_to_pot}
       else
-        self.update(last_bet: current_bet)
+        round.update(last_bet: current_bet)
       end
-    elsif self.cards.length == 5
+    elsif round.cards.length == 5
       if last_two_bets == ["raise", "call"] || last_two_bets == ["check", "check"]
-      self.update(last_bet: "")
-      self.find_winner
+      round.update(last_bet: "")
+      round = round.find_winner
     else
-      self.update(last_bet: current_bet)
+      round.update(last_bet: current_bet)
       end
     end
+    return round
   end
 
   def find_winner
-    
+    hand1 = self.hands.first
+    hand2 = self.hands.last
+    winner = hand1.rank_hand <=> hand2.rank_hand
+    if winner == 1
+      new_round = hand1.win
+    elsif winner == -1
+      new_round = hand2.win
+    elsif winner == 0
+      new_round = hand1.tie
+    end
+    return new_round
   end
 
   def create_flop
@@ -74,6 +86,7 @@ class Round < ActiveRecord::Base
   end
 
   def other_player_id(player)
+    binding.pry
     other_players = self.players_in_game - [player]
     return other_players.first.id
   end
