@@ -47,11 +47,9 @@ body {
   background-color: black;
   width: 210px;
   height: 100px;
-  top: 450px;
+  top: 550px;
   left: 200px;
   border-radius: 10px;
-  border-style: double;
-  border-color: #ff2708;
   text-align: center;
 }
 
@@ -62,31 +60,26 @@ body {
   background-color: black;
   width: 200px;
   height: 100px;
-  top: 450px;
+  top: 550px;
   left: 650px;
   border-radius: 10px;
-  border-style: double;
-  border-color: #ff2708;
   text-align: center;
 }
 
 #current{
   border-radius: 10px;
-  border-style: double;
-  border-color: #ff2708;
+  opacity: .8;
   background-color: black;
   position: absolute;
   width: 250px;
   top: 100px;
   left: 50px;
   text-align: center;
-
 }
 
 #away{
   border-radius: 10px;
-  border-style: double;
-  border-color: #ff2708;
+  opacity: .8;
   background-color: black;
   width: 250px;
   position: absolute;
@@ -97,16 +90,12 @@ body {
 
 #player1{
   border-radius: 10px;
-  border-style: double;
-  border-color: #ff2708;
   background-color: black;
   text-align: center;
 }
 
 #player2{
   border-radius: 10px;
-  border-style: double;
-  border-color: #ff2708;
   background-color: black;
   text-align: center;
 }
@@ -234,14 +223,14 @@ body {
   position: absolute;
      top: 500px;
      left: 460px;
-     height: 120px;
+     height: 140px;
 }
 
 .cards #hand_card1{
   position: absolute;
      top: 500px;
      left: 485px;
-     height: 120px;
+     height: 140px;
 }
 
 .animate {
