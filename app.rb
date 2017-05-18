@@ -8,7 +8,7 @@ get '/' do
   erb :start
 end
 
-get '/popup' do
+get '/poker' do
   erb :index
 end
 
@@ -33,7 +33,6 @@ post '/play_game' do
 end
 
 get '/text/2_player/round/:round_id' do
-  Card.create_deck
   # @players = Player.all
   # @hands = Hand.all
   @round = Round.find(params[:round_id].to_i)
@@ -48,8 +47,4 @@ patch '/text/fold/round/:round_id' do
   new_round = Round.create(pot: 0)
   new_round.create_game(inactive_player, active_player, 1)
   redirect '/text/2_player/round/'.concat(new_round.id.to_s)
-
-
-
-
 end
