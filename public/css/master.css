@@ -52,6 +52,7 @@ body {
   border-radius: 10px;
   border-style: double;
   border-color: #ff2708;
+  text-align: center;
 }
 
 #player2_money {
@@ -66,6 +67,7 @@ body {
   border-radius: 10px;
   border-style: double;
   border-color: #ff2708;
+  text-align: center;
 }
 
 #current{
@@ -77,6 +79,7 @@ body {
   width: 250px;
   top: 100px;
   left: 50px;
+  text-align: center;
 
 }
 
@@ -89,6 +92,7 @@ body {
   position: absolute;
   left: 700px;
   top: 100px;
+  text-align: center;
 }
 
 #player1{
@@ -96,6 +100,7 @@ body {
   border-style: double;
   border-color: #ff2708;
   background-color: black;
+  text-align: center;
 }
 
 #player2{
@@ -103,6 +108,7 @@ body {
   border-style: double;
   border-color: #ff2708;
   background-color: black;
+  text-align: center;
 }
 
 #full-opacity {
