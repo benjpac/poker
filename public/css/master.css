@@ -4,7 +4,6 @@ body{ overflow-x:hidden;overflow-y:hidden; }
 .z-index-1 img{
   position: absolute;
   z-index: 1;
-
 }
 
 .z-index-2 img{
@@ -29,6 +28,21 @@ body{ overflow-x:hidden;overflow-y:hidden; }
 
 .white {
   color: white;
+}
+
+#player1_money {
+  position: absolute;
+  z-index: 3;
+  opacity: .5;
+  background-color: black;
+  width: 200px;
+  height: 100px;
+  top: 500px;
+  left: 200px;
+}
+
+.full-opacity {
+  opacity: 1;
 }
 
 

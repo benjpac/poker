@@ -31,6 +31,15 @@
       <img id="card3" src="/img/Cards/c_2.png">
       <img id="card4" src="/img/Cards/c_2.png">
       <img id="card5" src="/img/Cards/c_2.png">
+
+      <div id="player1_money">
+        <h4><span class="full-opacity">test</span></h4>
+      </div>
+
+      <script>
+        document.getElementById("check").style.opacity = "0.5";
+      </script>
+
       <% active_player = Player.find(@round.active_player_id) %>
       <% inactive_player = Player.find(@round.inactive_player_id) %>
       <h2>Pot: $<%= @round.pot + active_player.hands.last.bet + inactive_player.hands.last.bet%></h2>

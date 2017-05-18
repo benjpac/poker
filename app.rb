@@ -16,10 +16,6 @@ get '/text' do
   erb :text
 end
 
-get '/deal' do
-  erb :deal
-end
-
 get '/player_names' do
   erb :player_names
 end
@@ -37,7 +33,7 @@ get '/text/2_player/round/:round_id' do
   # @hands = Hand.all
   @round = Round.find(params[:round_id].to_i)
 
-  erb :text_game
+  erb :game
 end
 
 patch '/text/fold/round/:round_id' do
