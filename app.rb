@@ -29,8 +29,6 @@ post '/play_game' do
 end
 
 get '/text/2_player/round/:round_id' do
-  # @players = Player.all
-  # @hands = Hand.all
   @round = Round.find(params[:round_id].to_i)
 
   erb :game
