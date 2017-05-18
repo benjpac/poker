@@ -66,7 +66,6 @@ end
 
 patch '/text/check/round/:round_id' do
   round = Round.find(params[:round_id])
-  binding.pry
   inactive_player = Player.find(round.inactive_player_id.to_i)
   round.update(active_player_id: inactive_player.id)
   round = round.deal_cards("check")

@@ -1,4 +1,6 @@
-body{ overflow-x:hidden;overflow-y:hidden; }
+body {
+  background-color: black;
+}
 
 /*background image for the index page*/
 .z-index-1 img{
@@ -32,7 +34,7 @@ body{ overflow-x:hidden;overflow-y:hidden; }
 
 #player1_money {
   position: absolute;
-  z-index: 3;
+  z-index: 2;
   opacity: .5;
   background-color: black;
   width: 200px;
@@ -41,8 +43,13 @@ body{ overflow-x:hidden;overflow-y:hidden; }
   left: 200px;
 }
 
-.full-opacity {
-  opacity: 1;
+#full-opacity {
+  position: absolute;
+  z-index: 3;
+  width: 200px;
+  height: 100px;
+  top: 500px;
+  left: 200px;
 }
 
 

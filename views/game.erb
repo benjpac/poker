@@ -10,12 +10,12 @@
 
       <% active_player = Player.find(@round.active_player_id) %>
       <% inactive_player = Player.find(@round.inactive_player_id) %>
-      <%  %>
+
       <div id="pot">
         <h2>Pot: $<%= @round.pot + active_player.hands.last.bet + inactive_player.hands.last.bet%></h2>
       </div>
 
-      <h1><%= active_player.name %>'s cards:</h1>
+      <h1><%= active_player.name %>'s turn!</h1>
       <% cards_in_hand = active_player.hands.last.cards %>
 
       <% if cards_in_hand != [] %>
@@ -24,7 +24,6 @@
         <% end %>
       <% end %>
 
-      <h1>Shared cards:</h1>
       <% shared_cards = @round.cards %>
       <% if shared_cards != [] %>
         <% shared_cards.each_with_index do |card, index| %>
@@ -33,7 +32,6 @@
       <% end %>
 
     </div>
-
 
     <% if inactive_player.hands.last.bet > active_player.hands.last.bet%>
 
@@ -73,7 +71,11 @@
     <h3>Available funds: $<%= active_player.money %></h3>
 
     <div id="player1_money">
-      <h4><span class="full-opacity">test</span></h4>
+
+    </div>
+
+    <div id="full-opacity">
+      <h4>test</h4>
     </div>
 
     <script>

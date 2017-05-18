@@ -86,7 +86,6 @@ class Round < ActiveRecord::Base
   end
 
   def other_player_id(player)
-    binding.pry
     other_players = self.players_in_game - [player]
     return other_players.first.id
   end
