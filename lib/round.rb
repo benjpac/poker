@@ -13,7 +13,6 @@ class Round < ActiveRecord::Base
     self.update(active_player_id: player1.id)
   end
 
-  # self.cards is weirdly broken - use "cards.all.where(round_id: self.id)"
   def deal_cards(current_bet)
     round = self
     last_two_bets = [round.last_bet, current_bet]
@@ -87,6 +86,7 @@ class Round < ActiveRecord::Base
 
   def other_player_id(player)
     other_players = self.players_in_game - [player]
+    #binding.pry
     return other_players.first.id
   end
 
