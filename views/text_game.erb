@@ -2,10 +2,10 @@
   <div class="col-md-6">
     <% active_player = Player.find(@round.active_player_id) %>
     <% inactive_player = Player.find(@round.inactive_player_id) %>
-    <% binding.pry %>
-    <h2>Pot: $<%= @round.pot + active_player.hand.bet + inactive_player.hand.bet%></h2>
+    <%  %>
+    <h2>Pot: $<%= @round.pot + active_player.hands.last.bet + inactive_player.hands.last.bet%></h2>
     <h1><%= active_player.name %></h1>
-    <% cards_in_hand = active_player.hand.cards %>
+    <% cards_in_hand = active_player.hands.last.cards %>
     <% if cards_in_hand != [] %>
       <% cards_in_hand.each do |card| %>
         <h1><%= card.image_string %></h1>
@@ -16,10 +16,17 @@
       <input type="hidden" name="_method" value="patch">
       <button type="submit">Fold</button>
     </form>
-    <form action="/text/call/round/<%= @round.id %>" method="post">
-      <input type="hidden" name="_method" value="patch">
-      <button type="submit">Call</button>
-    </form>
+    <% if inactive_player.hands.last.bet > active_player.hands.last.bet%>
+      <form action="/text/call/round/<%= @round.id %>" method="post">
+        <input type="hidden" name="_method" value="patch">
+        <button type="submit">Call</button>
+      </form>
+    <% elsif inactive_player.hands.last.bet == active_player.hands.last.bet %>
+      <form action="/text/check/round/<%= @round.id %>" method="post">
+        <input type="hidden" name="_method" value="patch">
+        <button type="submit">Check</button>
+      </form>
+    <% end %>
     <form action="/text/raise/round/<%= @round.id %>" method="post">
       <input type="hidden" name="_method" value="patch">
       <div class="form-group">
@@ -28,8 +35,8 @@
       </div>
       <button type="submit">Raise</button>
     </form>
-    <h3>Your opponent's bet: $<%= inactive_player.hand.bet %></h3></h3>
-    <h3>Your current bet: $<%= active_player.hand.bet %></h3>
+    <h3>Your opponent's bet: $<%= inactive_player.hands.last.bet %></h3></h3>
+    <h3>Your current bet: $<%= active_player.hands.last.bet %></h3>
     <h3>Available funds: $<%= active_player.money %></h3>
   </div>
 </div>

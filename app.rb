@@ -36,7 +36,7 @@ get '/text/2_player/round/:round_id' do
   # @players = Player.all
   # @hands = Hand.all
   @round = Round.find(params[:round_id].to_i)
-  binding.pry
+
   erb :text_game
 end
 
@@ -44,10 +44,36 @@ patch '/text/fold/round/:round_id' do
   round = Round.find(params[:round_id])
   active_player = Player.find(round.active_player_id.to_i)
   inactive_player = Player.find(round.inactive_player_id.to_i)
-  inactive_player.hand.win
+  inactive_player.hands.last.win
   new_round = Round.create(pot: 0)
-  binding.pry
   new_round.create_game(inactive_player, active_player, 1)
-  binding.pry
   redirect '/text/2_player/round/'.concat(new_round.id.to_s)
+end
+
+patch '/text/call/round/:round_id' do
+  round = Round.find(params[:round_id])
+  active_player = Player.find(round.active_player_id.to_i)
+  inactive_player = Player.find(round.inactive_player_id.to_i)
+  bet_amt = inactive_player.hands.last.bet - active_player.hands.last.bet
+  active_player.hands.last.make_bet(bet_amt)
+  round.update(active_player_id: inactive_player.id)
+  redirect '/text/2_player/round/'.concat(round.id.to_s)
+end
+
+patch '/text/check/round/:round_id' do
+  round = Round.find(params[:round_id])
+  inactive_player = Player.find(round.inactive_player_id.to_i)
+  round.update(active_player_id: inactive_player.id)
+  redirect '/text/2_player/round/'.concat(round.id.to_s)
+end
+
+patch '/text/raise/round/:round_id' do
+  round = Round.find(params[:round_id])
+  active_player = Player.find(round.active_player_id.to_i)
+  inactive_player = Player.find(round.inactive_player_id.to_i)
+  bet_amt = params[:raise].to_i
+  binding.pry
+  active_player.hands.last.make_bet(bet_amt)
+  round.update(active_player_id: inactive_player.id)
+  redirect '/text/2_player/round/'.concat(round.id.to_s)
 end

@@ -1,3 +1,3 @@
 class Player < ActiveRecord::Base
-  has_one :hand
+  has_many :hands
 end

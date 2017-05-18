@@ -33,13 +33,13 @@
       <img id="card5" src="/img/Cards/c_2.png">
       <% active_player = Player.find(@round.active_player_id) %>
       <% inactive_player = Player.find(@round.inactive_player_id) %>
-      <h2>Pot: $<%= @round.pot + active_player.hand.bet + inactive_player.hand.bet%></h2>
+      <h2>Pot: $<%= @round.pot + active_player.hands.last.bet + inactive_player.hands.last.bet%></h2>
       <h1><%= active_player.name %></h1>
 
-      <h3>Your opponent's bet: $<%= inactive_player.hand.bet %></h3></h3>
-      <h3>Your current bet: $<%= active_player.hand.bet %></h3>
+      <h3>Your opponent's bet: $<%= inactive_player.hands.last.bet %></h3></h3>
+      <h3>Your current bet: $<%= active_player.hands.last.bet %></h3>
       <h3>Available funds: $<%= active_player.money %></h3>
-      <% cards_in_hand = active_player.hand.cards %>
+      <% cards_in_hand = active_player.hands.last.cards %>
       <% if cards_in_hand != [] %>
         <% cards_in_hand.each_with_index do |card, index| %>
           <img id="hand_card<%= index %>" src="/img/Cards/<%= card.image_string %>.png">

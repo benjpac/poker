@@ -6,7 +6,7 @@ class Hand < ActiveRecord::Base
   def win
     self.move_to_pot
     other_player = Player.find(self.round.other_player_id(self))
-    other_player.hand.move_to_pot
+    other_player.hands.last.move_to_pot
     new_money_total = self.player.money + self.round.pot
     self.player.update(money: new_money_total)
   end
@@ -24,7 +24,7 @@ class Hand < ActiveRecord::Base
   def make_bet(amt)
     self.player.update(money: (self.player.money - amt))
     self.update(bet: (self.bet + amt))
-    binding.pry
+
   end
 
   def create_hand

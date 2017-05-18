@@ -47,7 +47,6 @@ class Round < ActiveRecord::Base
   def players_in_game
     players_in_game = []
     hands_in_game = Hand.all.where(round_id: self.id)
-    binding.pry
     hands_in_game.each {|hand| players_in_game.push(hand.player)}
     return players_in_game
   end
