@@ -16,8 +16,14 @@
           <img id="pot1" src="/img/pot.png"></a>Pot: $<%= @round.pot + active_player.hands.last.bet + inactive_player.hands.last.bet%></h2>
       </div>
 
+      <div id="current">
       <h1><%= active_player.name %>'s turn!</h1>
       <% cards_in_hand = active_player.hands.last.cards %>
+      </div>
+
+      <div id="away">
+        <h1><%= inactive_player.name %> look away!</h1>
+      </div>
 
       <% if cards_in_hand != [] %>
         <% cards_in_hand.each_with_index do |card, index| %>

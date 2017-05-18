@@ -68,6 +68,29 @@ body {
   border-color: #ff2708;
 }
 
+#current{
+  border-radius: 10px;
+  border-style: double;
+  border-color: #ff2708;
+  background-color: black;
+  position: absolute;
+  width: 250px;
+  top: 100px;
+  left: 50px;
+
+}
+
+#away{
+  border-radius: 10px;
+  border-style: double;
+  border-color: #ff2708;
+  background-color: black;
+  width: 250px;
+  position: absolute;
+  left: 700px;
+  top: 100px;
+}
+
 #player1{
   border-radius: 10px;
   border-style: double;
