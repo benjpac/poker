@@ -1,5 +1,13 @@
+#pot1{
+  position: absolute;
+  top: -53px;
+  height: 80px;
+  left: -5px;
+}
+
 body {
   background-color: black;
+  font-family: 'Arvo', serif;
 }
 
 /*background image for the index page*/
@@ -34,13 +42,44 @@ body {
 
 #player1_money {
   position: absolute;
-  z-index: 2;
-  opacity: .5;
+  z-index: 1;
+  opacity: .8;
+  background-color: black;
+  width: 210px;
+  height: 100px;
+  top: 450px;
+  left: 200px;
+  border-radius: 10px;
+  border-style: double;
+  border-color: #ff2708;
+}
+
+#player2_money {
+  position: absolute;
+  z-index: 1;
+  opacity: .8;
   background-color: black;
   width: 200px;
   height: 100px;
-  top: 500px;
-  left: 200px;
+  top: 450px;
+  left: 650px;
+  border-radius: 10px;
+  border-style: double;
+  border-color: #ff2708;
+}
+
+#player1{
+  border-radius: 10px;
+  border-style: double;
+  border-color: #ff2708;
+  background-color: black;
+}
+
+#player2{
+  border-radius: 10px;
+  border-style: double;
+  border-color: #ff2708;
+  background-color: black;
 }
 
 #full-opacity {
@@ -111,10 +150,10 @@ body {
 
 #pot {
   position: absolute;
-  background-color: black;
   width: 150px;
   top: 100px;
-  left: 435px;
+  left: 450px;
+
 }
 
 /*card transitions begin on the table*/

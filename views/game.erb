@@ -12,7 +12,8 @@
       <% inactive_player = Player.find(@round.inactive_player_id) %>
 
       <div id="pot">
-        <h2>Pot: $<%= @round.pot + active_player.hands.last.bet + inactive_player.hands.last.bet%></h2>
+        <h2>
+          <img id="pot1" src="/img/pot.png"></a>Pot: $<%= @round.pot + active_player.hands.last.bet + inactive_player.hands.last.bet%></h2>
       </div>
 
       <h1><%= active_player.name %>'s turn!</h1>
@@ -62,25 +63,24 @@
       <input type="hidden" name="_method" value="patch">
       <input id="fold" src="/img/buttons/fold.png" type="image" name="submit">
     </form>
+  <div id="player1_money">
+    <h3> Your opponent's bet: $<%= inactive_player.hands.last.bet %></h3></h3>
+    <br>
+    <div id="player1">
+      <h3> Opponent's funds: $<%= inactive_player.money %></h3>
+    </div>
 
-    <h3>Your opponent's bet: $<%= inactive_player.hands.last.bet %></h3></h3>
-    <h3>Opponent's funds: $<%= inactive_player.money %></h3>
+  </div>
     <br>
     <br>
+  <div id="player2_money">
     <h3>Your current bet: $<%= active_player.hands.last.bet %></h3>
+    <br>
+  <div id="player2">
     <h3>Available funds: $<%= active_player.money %></h3>
+  </div>
+  </div>
 
-    <div id="player1_money">
-
-    </div>
-
-    <div id="full-opacity">
-      <h4>test</h4>
-    </div>
-
-    <script>
-      document.getElementById("check").style.opacity = "0.5";
-    </script>
 
   </div>
 </div>
