@@ -5,8 +5,9 @@ class Hand < ActiveRecord::Base
 
   def win
     self.move_to_pot
-    other_player = Player.find(self.round.other_player_id(self))
+    other_player = Player.find(self.round.other_player_id(self.player))
     other_player.hands.last.move_to_pot
+    binding.pry
     new_money_total = self.player.money + self.round.pot
     self.player.update(money: new_money_total)
 
@@ -17,7 +18,7 @@ class Hand < ActiveRecord::Base
 
   def tie
     self.move_to_pot
-    other_player = Player.find(self.round.other_player_id(self))
+    other_player = Player.find(self.round.other_player_id(self.player))
     other_player.hands.last.move_to_pot
 
     new_money_total = self.player.money + self.round.pot/2
@@ -25,14 +26,17 @@ class Hand < ActiveRecord::Base
 
     other_money_total = other_player.money + self.round.pot/2
     other_player.update(money: other_money_total)
-  end
 
-  def fold
-    move_to_pot(self.round)
+    new_round = Round.create(pot: 0)
+    new_round.create_game(self.player, other_player, 1)
+    return new_round
   end
 
   def move_to_pot
-    round.update(pot: (self.round.pot + self.bet))
+    binding.pry
+    new_pot = self.round.pot + self.bet
+    self.round.update(pot: new_pot)
+    binding.pry
     self.update(bet: 0)
   end
 
