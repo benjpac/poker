@@ -1,10 +1,19 @@
-body{ overflow-x:hidden;overflow-y:hidden; }
+#pot1{
+  position: absolute;
+  top: -53px;
+  height: 80px;
+  left: -5px;
+}
+
+body {
+  background-color: black;
+  font-family: 'Arvo', serif;
+}
 
 /*background image for the index page*/
 .z-index-1 img{
   position: absolute;
   z-index: 1;
-
 }
 
 .z-index-2 img{
@@ -29,6 +38,86 @@ body{ overflow-x:hidden;overflow-y:hidden; }
 
 .white {
   color: white;
+}
+
+#player1_money {
+  position: absolute;
+  z-index: 1;
+  opacity: .8;
+  background-color: black;
+  width: 210px;
+  height: 100px;
+  top: 450px;
+  left: 200px;
+  border-radius: 10px;
+  border-style: double;
+  border-color: #ff2708;
+  text-align: center;
+}
+
+#player2_money {
+  position: absolute;
+  z-index: 1;
+  opacity: .8;
+  background-color: black;
+  width: 200px;
+  height: 100px;
+  top: 450px;
+  left: 650px;
+  border-radius: 10px;
+  border-style: double;
+  border-color: #ff2708;
+  text-align: center;
+}
+
+#current{
+  border-radius: 10px;
+  border-style: double;
+  border-color: #ff2708;
+  background-color: black;
+  position: absolute;
+  width: 250px;
+  top: 100px;
+  left: 50px;
+  text-align: center;
+
+}
+
+#away{
+  border-radius: 10px;
+  border-style: double;
+  border-color: #ff2708;
+  background-color: black;
+  width: 250px;
+  position: absolute;
+  left: 700px;
+  top: 100px;
+  text-align: center;
+}
+
+#player1{
+  border-radius: 10px;
+  border-style: double;
+  border-color: #ff2708;
+  background-color: black;
+  text-align: center;
+}
+
+#player2{
+  border-radius: 10px;
+  border-style: double;
+  border-color: #ff2708;
+  background-color: black;
+  text-align: center;
+}
+
+#full-opacity {
+  position: absolute;
+  z-index: 3;
+  width: 200px;
+  height: 100px;
+  top: 500px;
+  left: 200px;
 }
 
 
@@ -60,32 +149,40 @@ body{ overflow-x:hidden;overflow-y:hidden; }
   left: 650px;
 }
 
-#check {
+#call-check {
   position: absolute;
   width: 150px;
   top: 650px;
-  left: 140px;
-}
-
-#call {
-  position: absolute;
-  width: 150px;
-  top: 650px;
-  left: 340px;
+  left: 200px;
 }
 
 #raise {
   position: absolute;
   width: 150px;
   top: 650px;
-  left: 540px;
+  left: 435px;
+}
+
+#raise-form {
+  position: absolute;
+  top: 710px;
+  left: 435px;
+  color: black;
 }
 
 #fold {
   position: absolute;
   width: 150px;
   top: 650px;
-  left: 740px;
+  left: 670px;
+}
+
+#pot {
+  position: absolute;
+  width: 150px;
+  top: 100px;
+  left: 450px;
+
 }
 
 /*card transitions begin on the table*/
@@ -163,7 +260,7 @@ body{ overflow-x:hidden;overflow-y:hidden; }
   position: absolute;
      top: 500px;
      left: 460px;
-     height: 100px;
+     height: 120px;
      -webkit-animation-name: example;
     -webkit-animation-duration: 2s;
     -webkit-animation-delay: -1s;
@@ -175,7 +272,7 @@ body{ overflow-x:hidden;overflow-y:hidden; }
   position: absolute;
      top: 500px;
      left: 485px;
-     height: 100px;
+     height: 120px;
      -webkit-animation-name: example;
     -webkit-animation-duration: 2s;
     -webkit-animation-delay: -1s;

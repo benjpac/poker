@@ -1,20 +1,66 @@
 <div class="z-index-1">
   <img src="/img/twoplayer.jpg"/>
 </div>
+
 <div class="z-index-2">
   <div class="white">
-    <a href="#"><img id="check" src="/img/buttons/check.png"></a>
+    <div class="cards">
 
-    <form action="/text/call/round/<%= @round.id %>" method="post">
-      <input type="hidden" name="_method" value="patch">
-      <input id="call" src="/img/buttons/call.png" type="image" name="submit">
-    </form>
+      <img id="deck" src="/img/deck.png"></a>
+
+      <% active_player = Player.find(@round.active_player_id) %>
+      <% inactive_player = Player.find(@round.inactive_player_id) %>
+
+      <div id="pot">
+        <h2>
+          <img id="pot1" src="/img/pot.png"></a>Pot: $<%= @round.pot + active_player.hands.last.bet + inactive_player.hands.last.bet%></h2>
+      </div>
+
+      <div id="current">
+      <h1><%= active_player.name %>'s turn!</h1>
+      <% cards_in_hand = active_player.hands.last.cards %>
+      </div>
+
+      <div id="away">
+        <h1><%= inactive_player.name %> look away!</h1>
+      </div>
+
+      <% if cards_in_hand != [] %>
+        <% cards_in_hand.each_with_index do |card, index| %>
+          <img id="hand_card<%= index %>" src="/img/Cards/<%= card.image_string %>.png">
+        <% end %>
+      <% end %>
+
+      <% shared_cards = @round.cards %>
+      <% if shared_cards != [] %>
+        <% shared_cards.each_with_index do |card, index| %>
+          <img id="card<%= index + 1 %>" src="/img/Cards/<%= card.image_string %>.png">
+        <% end %>
+      <% end %>
+
+    </div>
+
+    <% if inactive_player.hands.last.bet > active_player.hands.last.bet%>
+
+      <form action="/text/call/round/<%= @round.id %>" method="post">
+        <input type="hidden" name="_method" value="patch">
+        <input id="call-check" src="/img/buttons/call.png" type="image" name="submit">
+      </form>
+
+    <% elsif inactive_player.hands.last.bet == active_player.hands.last.bet %>
+
+      <form action="/text/check/round/<%= @round.id %>" method="post">
+        <input type="hidden" name="_method" value="patch">
+        <input id="call-check" src="/img/buttons/check.png" type="image" name="submit">
+      </form>
+
+    <% end %>
 
     <form action="/text/raise/round/<%= @round.id %>" method="post">
       <input type="hidden" name="_method" value="patch">
-      <div class="form-group">
+      <div id="raise-form" class="form-group">
         <label for="raise"></label>
-        <input type="number" name="raise">
+        <input type="number" name="raise" required>
       </div>
       <input id="raise" src="/img/buttons/raise.png" type="image" name="submit">
     </form>
@@ -23,28 +69,24 @@
       <input type="hidden" name="_method" value="patch">
       <input id="fold" src="/img/buttons/fold.png" type="image" name="submit">
     </form>
-
-    <div class="cards">
-      <img id="deck" src="/img/deck.png"></a>
-      <img id="card1" src="/img/Cards/c_2.png">
-      <img id="card2" src="/img/Cards/c_2.png">
-      <img id="card3" src="/img/Cards/c_2.png">
-      <img id="card4" src="/img/Cards/c_2.png">
-      <img id="card5" src="/img/Cards/c_2.png">
-      <% active_player = Player.find(@round.active_player_id) %>
-      <% inactive_player = Player.find(@round.inactive_player_id) %>
-      <h2>Pot: $<%= @round.pot + active_player.hands.last.bet + inactive_player.hands.last.bet%></h2>
-      <h1><%= active_player.name %></h1>
-
-      <h3>Your opponent's bet: $<%= inactive_player.hands.last.bet %></h3></h3>
-      <h3>Your current bet: $<%= active_player.hands.last.bet %></h3>
-      <h3>Available funds: $<%= active_player.money %></h3>
-      <% cards_in_hand = active_player.hands.last.cards %>
-      <% if cards_in_hand != [] %>
-        <% cards_in_hand.each_with_index do |card, index| %>
-          <img id="hand_card<%= index %>" src="/img/Cards/<%= card.image_string %>.png">
-        <% end %>
-      <% end %>
+  <div id="player1_money">
+    <h3> Your opponent's bet: $<%= inactive_player.hands.last.bet %></h3></h3>
+    <br>
+    <div id="player1">
+      <h3> Opponent's funds: $<%= inactive_player.money %></h3>
     </div>
+
+  </div>
+    <br>
+    <br>
+  <div id="player2_money">
+    <h3>Your current bet: $<%= active_player.hands.last.bet %></h3>
+    <br>
+  <div id="player2">
+    <h3>Available funds: $<%= active_player.money %></h3>
+  </div>
+  </div>
+
+
   </div>
 </div>

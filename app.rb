@@ -16,10 +16,6 @@ get '/text' do
   erb :text
 end
 
-get '/deal' do
-  erb :deal
-end
-
 get '/player_names' do
   erb :player_names
 end
@@ -37,7 +33,7 @@ get '/text/2_player/round/:round_id' do
   # @hands = Hand.all
   @round = Round.find(params[:round_id].to_i)
 
-  erb :text_game
+  erb :game
 end
 
 patch '/text/fold/round/:round_id' do
@@ -47,6 +43,12 @@ patch '/text/fold/round/:round_id' do
   new_round = inactive_player.hands.last.win
   redirect '/text/2_player/round/'.concat(new_round.id.to_s)
 end
+
+# <img id="card1" src="/img/Cards/c_2.png">
+# <img id="card2" src="/img/Cards/c_2.png">
+# <img id="card3" src="/img/Cards/c_2.png">
+# <img id="card4" src="/img/Cards/c_2.png">
+# <img id="card5" src="/img/Cards/c_2.png">
 
 patch '/text/call/round/:round_id' do
   round = Round.find(params[:round_id])
