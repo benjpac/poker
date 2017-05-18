@@ -7,7 +7,10 @@ class Hand < ActiveRecord::Base
     self.move_to_pot
     other_player = Player.find(self.round.other_player_id(self.player))
     other_player.hands.last.move_to_pot
-    new_money_total = self.player.money + self.round.pot
+
+    round = Round.find(self.round.id)
+    new_money_total = self.player.money + round.pot
+
     self.player.update(money: new_money_total)
 
     new_round = Round.create(pot: 0)
@@ -20,10 +23,11 @@ class Hand < ActiveRecord::Base
     other_player = Player.find(self.round.other_player_id(self.player))
     other_player.hands.last.move_to_pot
 
-    new_money_total = self.player.money + self.round.pot/2
+    round = Round.find(self.round.id)
+    new_money_total = self.player.money + round.pot/2
     self.player.update(money: new_money_total)
 
-    other_money_total = other_player.money + self.round.pot/2
+    other_money_total = other_player.money + round.pot/2
     other_player.update(money: other_money_total)
 
     new_round = Round.create(pot: 0)
