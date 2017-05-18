@@ -9,11 +9,26 @@ class Hand < ActiveRecord::Base
     other_player.hands.last.move_to_pot
     new_money_total = self.player.money + self.round.pot
     self.player.update(money: new_money_total)
+
+    new_round = Round.create(pot: 0)
+    new_round.create_game(self.player, other_player, 1)
+    return new_round
+  end
+
+  def tie
+    self.move_to_pot
+    other_player = Player.find(self.round.other_player_id(self))
+    other_player.hands.last.move_to_pot
+
+    new_money_total = self.player.money + self.round.pot/2
+    self.player.update(money: new_money_total)
+
+    other_money_total = other_player.money + self.round.pot/2
+    other_player.update(money: other_money_total)
   end
 
   def fold
     move_to_pot(self.round)
-    self.destroy
   end
 
   def move_to_pot
@@ -35,7 +50,7 @@ class Hand < ActiveRecord::Base
   end
 
   def add_round_and_sort
-    seven_cards = self.cards + self.cards
+    seven_cards = self.cards + self.round.cards
     small_to_large = seven_cards.sort_by {|card| card.value}
     return small_to_large.reverse
   end
@@ -50,7 +65,6 @@ class Hand < ActiveRecord::Base
         combinations.push(five)
       end
     end
-
     return combinations
   end
 
