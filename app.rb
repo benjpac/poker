@@ -4,8 +4,11 @@ also_reload 'lib/**/*.rb'
 
 Dir[File.dirname(__FILE__) + '/lib/*.rb'].each { |file| require file }
 
-
 get '/' do
+  erb :start
+end
+
+get '/poker' do
   erb :index
 end
 
@@ -30,7 +33,6 @@ post '/play_game' do
 end
 
 get '/text/2_player/round/:round_id' do
-  Card.create_deck
   # @players = Player.all
   # @hands = Hand.all
   @round = Round.find(params[:round_id].to_i)
@@ -48,8 +50,4 @@ patch '/text/fold/round/:round_id' do
   new_round.create_game(inactive_player, active_player, 1)
   binding.pry
   redirect '/text/2_player/round/'.concat(new_round.id.to_s)
-
-
-
-
 end

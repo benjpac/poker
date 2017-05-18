@@ -1,3 +1,5 @@
+body{ overflow-x:hidden;overflow-y:hidden; }
+
 /*background image for the index page*/
 .z-index-1 img{
   position: absolute;
@@ -22,6 +24,10 @@
 }
 
 .name-form label {
+  color: white;
+}
+
+.white {
   color: white;
 }
 
@@ -153,7 +159,7 @@
     animation-duration: 3s;
 }
 
-.cards #hand_card1{
+.cards #hand_card0{
   position: absolute;
      top: 500px;
      left: 460px;
@@ -165,7 +171,7 @@
     animation-duration: 3s;
 }
 
-.cards #hand_card2{
+.cards #hand_card1{
   position: absolute;
      top: 500px;
      left: 485px;
