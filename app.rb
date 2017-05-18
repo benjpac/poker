@@ -47,6 +47,12 @@ patch '/text/fold/round/:round_id' do
   redirect '/text/2_player/round/'.concat(new_round.id.to_s)
 end
 
+# <img id="card1" src="/img/Cards/c_2.png">
+# <img id="card2" src="/img/Cards/c_2.png">
+# <img id="card3" src="/img/Cards/c_2.png">
+# <img id="card4" src="/img/Cards/c_2.png">
+# <img id="card5" src="/img/Cards/c_2.png">
+
 patch '/text/call/round/:round_id' do
   round = Round.find(params[:round_id])
   active_player = Player.find(round.active_player_id.to_i)
